@@ -4,10 +4,115 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2번화면 입니다"
-        android:textSize="40sp"/>
+        android:background="#EFEFEF">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="#EFEFEF"
+            android:scaleType="centerCrop"
+            android:src="@drawable/btn_back"
+            android:stateListAnimator="@null"></ImageButton>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:text="추천게시판"
+            android:textColor="#000000"
+            android:textSize="28dp">
+
+        </TextView>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:text="오늘의 추천 BEST"
+                android:textColor="#000000"
+                android:textSize="25dp">
+
+            </TextView>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"></androidx.viewpager.widget.ViewPager>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="150dp"
+                    android:text="오늘의 슥- 질문"
+                    android:textColor="#000000"
+                    android:textSize="25dp">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listview1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></ListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="150dp"
+                    android:text="뉴스"
+                    android:textColor="#000000"
+                    android:textSize="25dp">
+
+                </TextView>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></ListView>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
