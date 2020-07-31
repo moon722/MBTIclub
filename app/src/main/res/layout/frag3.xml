@@ -22,10 +22,12 @@
             android:inputType="textPersonName"
             android:text="INTP"
             android:textSize="40sp"
-            android:background="@null"
+            android:background="@drawable/mbti_edge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
+<!--            android:autofillHints="" 사용자의 정보를 가져와서 사용-->
+
 
 
         <TextView
@@ -43,7 +45,7 @@
     <ListView
         android:id="@+id/board_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="649dp"></ListView>
 
 
 

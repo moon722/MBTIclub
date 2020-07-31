@@ -57,7 +57,19 @@ public class Frag3 extends Fragment{
         board_data.add("음악");
         board_data.add("운동");
         board_data.add("학업");
-        board_data.add("게임");
+        board_data.add("소모임");
+        board_data.add("자유");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+
+
 
 
 
@@ -88,6 +100,7 @@ public class Frag3 extends Fragment{
         data.add("ISFP");
         data.add("ESTP");
         data.add("ESFP");
+
 
 
         //create array adapter

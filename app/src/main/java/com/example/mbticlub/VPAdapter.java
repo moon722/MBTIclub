@@ -9,32 +9,46 @@ import java.util.ArrayList;
 
 public class VPAdapter extends FragmentPagerAdapter{
 
-    private ArrayList<Fragment> items;
-    private ArrayList<String> itext = new ArrayList<String>();
+//    private ArrayList<Fragment> items;
+//    private ArrayList<String> itext = new ArrayList<String>();
+    int mNumofTabs;
 
     public VPAdapter(FragmentManager fm) {
         super(fm);
-        items = new ArrayList<Fragment>();
-        items.add(new BlankFragment());
-        items.add(new BlankFragment2());
-
-        itext.add("Notifications");
-        itext.add("Message");
+        this.mNumofTabs = 2;
+//
+//        items = new ArrayList<Fragment>();
+//        items.add(new BlankFragment());
+//        items.add(new BlankFragment2());
+//
+//        itext.add("Notifications");
+//        itext.add("Message");
     }
 
     @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return itext.get(position);
-    }
+//    @Override
+//    public CharSequence getPageTitle(int position) {
+//        return itext.get(position);
+//    }
 
     @Override
     public Fragment getItem(int position) {
-        return items.get(position);
+        switch (position){
+            case 0:
+                BlankFragment tab1 = new BlankFragment();
+                return tab1;
+            case 1:
+                BlankFragment2 tab2 = new BlankFragment2();
+                return tab2;
+            default:
+                return null;
+        }
+//        return items.get(position);
     }
 
     @Override
     public int getCount() {
-        return items.size();
+        return mNumofTabs;
+//        return items.size();
     }
 }

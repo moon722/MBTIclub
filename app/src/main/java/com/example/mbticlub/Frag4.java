@@ -41,4 +41,20 @@ public class Frag4 extends Fragment {
         return view;
 
     }
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ViewPager vp = (ViewPager) view.findViewById(R.id.viewpager);
+        vp.setAdapter(new VPAdapter(getChildFragmentManager()));
+        TabLayout tab = view.findViewById(R.id.tab);
+        tab.setupWithViewPager(vp);
+
+        ArrayList<Integer> images = new ArrayList<Integer>();
+        images.add(R.drawable.ic_not);
+        images.add(R.drawable.ic_cha);
+
+        for(int i=0; i<2; i++) tab.getTabAt(i).setIcon(images.get(i));
+
+    }
 }
