@@ -1,48 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10px"
-    android:padding="10dp"
+    android:layout_height="670dp"
     tools:context=".MainActivity"
     android:orientation="vertical">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:stretchColumns="0"
-        android:padding="10dp"
-        android:layout_weight="3"
-        android:id="@+id/line1">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#EFEFEF">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:text="MBTIY 전체 게시판"
+        android:textColor="#000000"
+        android:textSize="28dp"
+        android:gravity="center">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:text="오늘의 추천 BEST"
-            android:textColor="#000000"
-            android:textSize="25dp">
-
-        </TextView>
-
-        <androidx.viewpager.widget.ViewPager
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ImageMain1"
-            android:layout_marginTop="16dp">
-        </androidx.viewpager.widget.ViewPager>
-
+    </TextView>
     </LinearLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:text="오늘의 추천 BEST 글"
+                android:textColor="#000000"
+                android:textSize="25dp">
+
+            </TextView>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/ImageMain1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"></androidx.viewpager.widget.ViewPager>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_weight="1"
         android:id="@+id/line2">
         <ImageView
             android:layout_width="match_parent"
@@ -56,8 +69,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
         android:id="@+id/line3">

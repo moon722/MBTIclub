@@ -31,11 +31,12 @@ public class Frag2 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag2,container,false);
         ArrayList<Integer> listImage = new ArrayList<>();
-        listImage.add(R.drawable.cat);
-        listImage.add(R.drawable.culture);
-        listImage.add(R.drawable.lion);
-        listImage.add(R.drawable.dog);
-
+        if(listImage == null) {
+            listImage.add(R.drawable.cat);
+            listImage.add(R.drawable.culture);
+            listImage.add(R.drawable.lion);
+            listImage.add(R.drawable.dog);
+        }
         ViewPager viewPager = view.findViewById(R.id.viewPager);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getFragmentManager());
         // ViewPager와  FragmentAdapter 연결
@@ -89,7 +90,6 @@ public class Frag2 extends Fragment {
 
         gridView = (GridView) view.findViewById(R.id.gridview);
         gridAdapter = new GridAdapter();
-
 
 
         gridAdapter.addItem(new GridItem("뮤지컬",R.drawable.poster));
