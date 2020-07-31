@@ -72,11 +72,11 @@ public class Frag1 extends Fragment {
     public void initializeData()
     {
         imageList = new ArrayList();
-    if(imageList == null) {
+
         imageList.add(R.drawable.movie1);
         imageList.add(R.drawable.movie2);
         imageList.add(R.drawable.movie3);
-    }
+
         adapter.addItem(R.drawable.fire,"핫 게시판");
         adapter.addItem(R.drawable.ic_baseline_turned_in_24,"즐겨찾기");
         adapter.addItem(R.drawable.sysinfo,"정보게시판");

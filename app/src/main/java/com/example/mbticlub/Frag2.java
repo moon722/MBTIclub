@@ -31,12 +31,12 @@ public class Frag2 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag2,container,false);
         ArrayList<Integer> listImage = new ArrayList<>();
-        if(listImage == null) {
+
             listImage.add(R.drawable.cat);
             listImage.add(R.drawable.culture);
             listImage.add(R.drawable.lion);
             listImage.add(R.drawable.dog);
-        }
+
         ViewPager viewPager = view.findViewById(R.id.viewPager);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getFragmentManager());
         // ViewPager와  FragmentAdapter 연결
