@@ -30,63 +30,28 @@ public class Frag2 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag2,container,false);
-        ArrayList<Integer> listImage = new ArrayList<>();
 
-            listImage.add(R.drawable.cat);
-            listImage.add(R.drawable.culture);
-            listImage.add(R.drawable.lion);
-            listImage.add(R.drawable.dog);
-
-        ViewPager viewPager = view.findViewById(R.id.viewPager);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getFragmentManager());
-        // ViewPager와  FragmentAdapter 연결
-        viewPager.setAdapter(fragmentAdapter);
+        init(fragmentAdapter);
 
-        viewPager.setClipToPadding(false);
-        int dpValue = 16;
-        float d = getResources().getDisplayMetrics().density;
-        int margin = (int) (dpValue * d);
-        viewPager.setPadding(margin, 0, margin, 0);
-        viewPager.setPageMargin(margin/2);
-
-        // FragmentAdapter에 Fragment 추가, Image 개수만큼 추가
-        for (int i = 0; i < listImage.size(); i++) {
-            ImageFragment imageFragment = new ImageFragment();
-            Bundle bundle = new Bundle();
-            bundle.putInt("imgRes", listImage.get(i));
-            imageFragment.setArguments(bundle);
-            fragmentAdapter.addItem(imageFragment);
-        }
-        fragmentAdapter.notifyDataSetChanged();
-        /*for(i=0; i<listImage.size();i++){
-            final int index;
-            index = i;
-
-
-        }*/
-        ListView listview, listview2 ;
+        ListView listview;
         ListViewAdapter adapter;
 
         // Adapter 생성
-        adapter = new ListViewAdapter() ;
+        adapter = new ListViewAdapter();
 
         // 리스트뷰 참조 및 Adapter달기
         listview = (ListView) view.findViewById(R.id.listview1);
-
-
         listview.setAdapter(adapter);
 
-
         // 첫 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.ic_launcher),
-                "Box", "Account Box Black 36dp") ;
+        adapter.addItem(ContextCompat.getDrawable(container.getContext(),R.drawable.ic_launcher),"Box", "Account Box Black 36dp") ;
         // 두 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.ic_launcher),
                 "Circle", "Account Circle Black 36dp") ;
         // 세 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.ic_launcher),
                 "Ind", "Assignment Ind Black 36dp") ;
-
 
         gridView = (GridView) view.findViewById(R.id.gridview);
         gridAdapter = new GridAdapter();
@@ -103,6 +68,47 @@ public class Frag2 extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(getChildFragmentManager());
+        init(fragmentAdapter);
+    }
+
+    public void init(FragmentAdapter fragmentAdapter){
+        // ViewPager와  FragmentAdapter 연결
+        ViewPager viewPager = view.findViewById(R.id.viewPager);
+        viewPager.setAdapter(fragmentAdapter);
+        viewPager.setClipToPadding(false);
+
+        int dpValue = 16;
+        float d = getResources().getDisplayMetrics().density;
+        int margin = (int) (dpValue * d);
+        viewPager.setPadding(margin, 0, margin, 0);
+        viewPager.setPageMargin(margin/2);
+
+        ArrayList<Integer> listImage = new ArrayList<>();
+
+        listImage.add(R.drawable.cat);
+        listImage.add(R.drawable.culture);
+        listImage.add(R.drawable.lion);
+        listImage.add(R.drawable.dog);
+
+        // FragmentAdapter에 Fragment 추가, Image 개수만큼 추가
+        for (int i = 0; i < listImage.size(); i++) {
+            ImageFragment imageFragment = new ImageFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("imgRes", listImage.get(i));
+            imageFragment.setArguments(bundle);
+            fragmentAdapter.addItem(imageFragment);
+        }
+        fragmentAdapter.notifyDataSetChanged();
+
+
+    }
+
+
     class FragmentAdapter extends FragmentPagerAdapter {
 
         // ViewPager에 들어갈 Fragment들을 담을 리스트

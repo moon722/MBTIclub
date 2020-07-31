@@ -3,8 +3,12 @@ package com.example.mbticlub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,5 +40,22 @@ public class PostActivity extends AppCompatActivity {
 
         //intent = getIntent();
         //intent.getExtras().getString("imgRes");
+
+        ImageButton imgBtn = (ImageButton) findViewById(R.id.ListBackBtn);
+        imgBtn.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast toast =  Toast.makeText(this,"뒤로 이동합니다",Toast.LENGTH_LONG);
+
     }
 }

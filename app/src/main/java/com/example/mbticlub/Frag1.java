@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.drawable.DrawableUtils;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -32,29 +33,55 @@ public class Frag1 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag1,container,false);
 
-        //객체 선언
-        ViewPager viewPager = view.findViewById(R.id.ImageMain1);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getFragmentManager());
+
+        this.initializeData(fragmentAdapter);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+       // ViewPager vp = (ViewPager) view.findViewById(R.id.ImageMain1);
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(getChildFragmentManager());
+
+        this.initializeData(fragmentAdapter);
+    }
+
+
+    public void initializeData(FragmentAdapter fragmentAdapter)
+    {
+
+        imageList = new ArrayList();
+
+        imageList.add(R.drawable.movie1);
+        imageList.add(R.drawable.movie2);
+        imageList.add(R.drawable.movie3);
+
         adapter = new ListViewAdapter1();
 
-        //리스트 참조 및 adapter 달기
+        adapter.addItem(R.drawable.fire,"핫 게시판");
+        adapter.addItem(R.drawable.ic_baseline_turned_in_24,"즐겨찾기");
+        adapter.addItem(R.drawable.sysinfo,"정보게시판");
+        adapter.notifyDataSetChanged();
+
         listView = (ListView) view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
-        //listView.setOnItemClickListener(listener);
 
-        //오늘의 주제 이미지 초기 설정
-        this.initializeData();
-        adapter.notifyDataSetChanged();
+        float density = getResources().getDisplayMetrics().density;
+        int margin = (int) (DP * density);
+
+        ViewPager viewPager = view.findViewById(R.id.ImageMain1);
 
         viewPager.setAdapter(fragmentAdapter);
         viewPager.setClipToPadding(false);
 
-        float density = getResources().getDisplayMetrics().density;
-        int margin = (int) (DP * density);
         viewPager.setPadding(margin, 0, margin, 0);
         viewPager.setPageMargin(margin/2);
 
         //viewPager.setAdapter(new ImageFragment(this, imageList));
+
 
         for(int i = 0; i<imageList.size(); i++){
             ImageFragment imageFragment = new ImageFragment();
@@ -64,22 +91,6 @@ public class Frag1 extends Fragment {
             fragmentAdapter.addItem(imageFragment);
         }
         fragmentAdapter.notifyDataSetChanged();
-
-        return view;
-
-    }
-
-    public void initializeData()
-    {
-        imageList = new ArrayList();
-
-        imageList.add(R.drawable.movie1);
-        imageList.add(R.drawable.movie2);
-        imageList.add(R.drawable.movie3);
-
-        adapter.addItem(R.drawable.fire,"핫 게시판");
-        adapter.addItem(R.drawable.ic_baseline_turned_in_24,"즐겨찾기");
-        adapter.addItem(R.drawable.sysinfo,"정보게시판");
 
     }
 

@@ -48,7 +48,9 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/ImageMain1"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"></androidx.viewpager.widget.ViewPager>
+                android:layout_height="200dp">
+
+            </androidx.viewpager.widget.ViewPager>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
