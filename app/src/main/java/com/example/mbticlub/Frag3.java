@@ -60,6 +60,15 @@ public class Frag3 extends Fragment{
         board_data.add("소모임");
         board_data.add("자유");
         board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+        board_data.add("독서");
+
 
 
 
