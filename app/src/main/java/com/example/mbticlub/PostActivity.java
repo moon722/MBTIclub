@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +16,7 @@ public class PostActivity extends AppCompatActivity {
     Intent intent;
     ImageView imgview;
     TextView title, content;
+    ImageButton backbtn;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,31 +31,17 @@ public class PostActivity extends AppCompatActivity {
         //content  = (TextView)findViewById(R.id.Postcontent);
         intent = getIntent();
         imgview.setImageResource(intent.getIntExtra("img",1 ));
-        //int  img = intent.getIntExtra("img");
-        //imgview.setImageResource(img);
 
 
 
+        backbtn = (ImageButton)findViewById(R.id.backbtn);
 
-
-        //intent = getIntent();
-        //intent.getExtras().getString("imgRes");
-
-        ImageButton imgBtn = (ImageButton) findViewById(R.id.ListBackBtn);
-        imgBtn.setOnClickListener(new ImageButton.OnClickListener() {
+        backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Toast toast =  Toast.makeText(this,"뒤로 이동합니다",Toast.LENGTH_LONG);
 
     }
 }
