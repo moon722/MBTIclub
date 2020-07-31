@@ -25,7 +25,7 @@ public class Frag4 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag4,container,false);
 
-        ViewPager vp = view.findViewById(R.id.viewpager);
+        ViewPager vp = view.findViewById(R.id.kviewpager);
         VPAdapter adapter = new VPAdapter(getFragmentManager());
         vp.setAdapter(adapter);
 
@@ -45,7 +45,7 @@ public class Frag4 extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ViewPager vp = (ViewPager) view.findViewById(R.id.viewpager);
+        ViewPager vp = (ViewPager) view.findViewById(R.id.kviewpager);
         vp.setAdapter(new VPAdapter(getChildFragmentManager()));
         TabLayout tab = view.findViewById(R.id.tab);
         tab.setupWithViewPager(vp);
