@@ -18,9 +18,21 @@
         android:layout_weight="3"
         android:id="@+id/line1">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:text="오늘의 추천 BEST"
+            android:textColor="#000000"
+            android:textSize="25dp">
+
+        </TextView>
+
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/ImageMain1"
             android:layout_marginTop="16dp">
         </androidx.viewpager.widget.ViewPager>
@@ -59,8 +71,6 @@
                 android:id="@+id/swipeRefreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <!-- ListView、ScrollView、RecyclerView、Other -->
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
