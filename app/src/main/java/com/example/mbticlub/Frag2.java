@@ -1,9 +1,13 @@
 package com.example.mbticlub;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +23,8 @@ import java.util.ArrayList;
 public class Frag2 extends Fragment {
 
     private View view;
+    GridView gridView;
+    GridAdapter gridAdapter;
 
     @Nullable
     @Override
@@ -65,10 +71,10 @@ public class Frag2 extends Fragment {
 
         // 리스트뷰 참조 및 Adapter달기
         listview = (ListView) view.findViewById(R.id.listview1);
-        listview2 = (ListView) view.findViewById(R.id.listview2);
+
 
         listview.setAdapter(adapter);
-        listview2.setAdapter(adapter);
+
 
         // 첫 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.ic_launcher),
@@ -79,6 +85,22 @@ public class Frag2 extends Fragment {
         // 세 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.ic_launcher),
                 "Ind", "Assignment Ind Black 36dp") ;
+
+
+        gridView = (GridView) view.findViewById(R.id.gridview);
+        gridAdapter = new GridAdapter();
+
+
+
+        gridAdapter.addItem(new GridItem("뮤지컬",R.drawable.poster));
+        gridAdapter.addItem(new GridItem("영화",R.drawable.poster2));
+        gridAdapter.addItem(new GridItem("조커",R.drawable.poster3));
+        gridView.setAdapter(gridAdapter);
+
+        int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
+        gridView.measure(0, expandSpec);
+        gridView.getLayoutParams().height = gridView.getMeasuredHeight();
+
         return view;
     }
     class FragmentAdapter extends FragmentPagerAdapter {
@@ -105,5 +127,38 @@ public class Frag2 extends Fragment {
         void addItem(Fragment fragment) {
             fragments.add(fragment);
         }
+
+    }class GridAdapter extends BaseAdapter{
+        ArrayList<GridItem> items = new ArrayList<GridItem>();
+        @Override
+        public int getCount() {
+            return items.size();
+        }
+
+        public void addItem(GridItem singerItem){
+            items.add(singerItem);
+        }
+
+        @Override
+        public GridItem getItem(int i) {
+            return items.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            GridViewer singerViewer = new GridViewer(viewGroup.getContext());
+            singerViewer.setItem(items.get(i));
+            return singerViewer;
+        }
     }
+
+
+
+
+
 }

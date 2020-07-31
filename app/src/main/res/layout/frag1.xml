@@ -59,8 +59,6 @@
                 android:id="@+id/swipeRefreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <!-- ListView、ScrollView、RecyclerView、Other -->
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
