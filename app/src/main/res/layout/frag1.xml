@@ -1,13 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10px"
+    android:padding="10dp"
+    tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:stretchColumns="0"
+        android:padding="10dp"
+        android:layout_weight="3"
+        android:id="@+id/line1">
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ImageMain1"
+            android:layout_marginTop="16dp">
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1번화면 입니다"
-        android:textSize="40sp"/>
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:id="@+id/line2">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Imageadv"
+            android:src="@drawable/adv1"
+            android:contentDescription="TODO">
+
+        </ImageView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:id="@+id/line3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.baoyz.widget.PullRefreshLayout
+                android:id="@+id/swipeRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- ListView、ScrollView、RecyclerView、Other -->
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/listView">
+
+                </ListView>
+            </com.baoyz.widget.PullRefreshLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
