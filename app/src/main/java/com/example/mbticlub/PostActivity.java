@@ -31,10 +31,7 @@ public class PostActivity extends AppCompatActivity {
         //content  = (TextView)findViewById(R.id.Postcontent);
         intent = getIntent();
         imgview.setImageResource(intent.getIntExtra("img",1 ));
-
-
-
-        backbtn = (ImageButton)findViewById(R.id.backbtn);
+        backbtn = (ImageButton)findViewById(R.id.ListBackBtn);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +39,7 @@ public class PostActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
 
     }
 }

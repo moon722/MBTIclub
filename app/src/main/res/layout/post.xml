@@ -7,7 +7,6 @@
         android:layout_height="wrap_content"
         android:background="#EFEFEF">
         <ImageButton
-            android:id="@+id/backbtn"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -55,8 +54,7 @@
                     android:layout_width="354dp"
                     android:layout_height="328dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/culture">
+                    android:layout_margin="20dp">
 
 
                 </ImageView>
