@@ -41,6 +41,7 @@ public class Frag3 extends Fragment{
     ArrayAdapter<String> board_adapter;
     ListView board_listview;
     EditText board_editText;
+    int current_backgound=R.color.INTP;
 
 
     @Nullable
@@ -127,12 +128,13 @@ public class Frag3 extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 txtDate.setText(adapter_dialog.getItem(position));
-                background.setBackgroundResource(board_colors[position]);
+                current_backgound=board_colors[position];
+                background.setBackgroundResource(current_backgound);
 
                 dialog.dismiss();
             }
         });
-
+        background.setBackgroundResource(current_backgound);
         return view;
     }
     public void searchItem(String textToSearch){
