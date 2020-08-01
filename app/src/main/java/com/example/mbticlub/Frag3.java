@@ -148,7 +148,7 @@ public class Frag3 extends Fragment{
 
     }
     public void init_boardList(){
-        board_items=new String[]{"Full board","travel","date","game","exercise","cooking"};
+        board_items=new String[]{"전체게시판","자유게시판","여행","연애","게임","운동","영화","독서","소모임"};
         board_listitems=new ArrayList<>(Arrays.asList(board_items));
         board_adapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,board_listitems);
         board_listview.setAdapter(board_adapter);
