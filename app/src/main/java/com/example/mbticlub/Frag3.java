@@ -53,29 +53,27 @@ public class Frag3 extends Fragment{
         board_listview = (ListView)view.findViewById(R.id.board_listview);
         board_editText=(EditText)view.findViewById(R.id.textSearch);
         init_boardList();
+        board_listview.setTextFilterEnabled(true);
         board_editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals("")){
-                    //reset listview
-                    init_boardList();
-                }
-                else{
-                    //perform search
-                    searchItem(s.toString());
-                }
+                board_listview.setFilterText(board_editText.getText().toString());
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if(board_editText.getText().length()==0){
+                    board_listview.clearTextFilter();
+                }
 
             }
         });
+//        ------------------------ mbti button
 
         //add data to listview
         ListView listView=new ListView(this.getActivity());
@@ -123,7 +121,6 @@ public class Frag3 extends Fragment{
                 dialog.show();
             }
         });
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -137,16 +134,7 @@ public class Frag3 extends Fragment{
         background.setBackgroundResource(current_backgound);
         return view;
     }
-    public void searchItem(String textToSearch){
-        for(String item:board_items){
-            if(!item.contains(textToSearch)){
-                board_listitems.remove(item);
-            }
 
-            board_adapter.notifyDataSetChanged();
-        }
-
-    }
     public void init_boardList(){
         board_items=new String[]{"전체게시판","자유게시판","여행","연애","게임","운동","영화","독서","소모임"};
         board_listitems=new ArrayList<>(Arrays.asList(board_items));
