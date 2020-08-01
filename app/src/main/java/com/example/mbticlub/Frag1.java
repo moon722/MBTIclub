@@ -1,9 +1,11 @@
 package com.example.mbticlub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -68,6 +70,15 @@ public class Frag1 extends Fragment {
 
         listView = (ListView) view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
+
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getActivity(),hotListview.class);
+//                startActivity(intent);
+//            }
+//        });
+
 
         float density = getResources().getDisplayMetrics().density;
         int margin = (int) (DP * density);
