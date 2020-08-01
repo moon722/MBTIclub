@@ -2,6 +2,7 @@ package com.example.mbticlub;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,28 +31,24 @@ public class Frag3 extends Fragment{
 
 
     private View view;
-    private ListView board_list;
-    //    Button MBTI_selection;
-//    TextView board_title;
+    LinearLayout background;
     final CharSequence[] MBTIs = {"INTP","ENTP","INFP","ENFP","ESFP","ISFP"};
-//    AlertDialog.Builder builder = new AlertDialog.Builder(null);
 
-//    -------------------
-//    -------------------
 
-//    -------------------
+//    -------------------board list,search
     String[] board_items;
     ArrayList<String> board_listitems;
     ArrayAdapter<String> board_adapter;
     ListView board_listview;
     EditText board_editText;
-//    -------------------
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag3,container,false);
+        background = (LinearLayout)view.findViewById(R.id.board_background);
+
         board_listview = (ListView)view.findViewById(R.id.board_listview);
         board_editText=(EditText)view.findViewById(R.id.textSearch);
         init_boardList();
@@ -87,7 +85,7 @@ public class Frag3 extends Fragment{
         data.add("ENTJ");
         data.add("ENTP");
 
-        data.add("INFj");
+        data.add("INFJ");
         data.add("INFP");
         data.add("ENFJ");
         data.add("ENFP");
@@ -101,6 +99,10 @@ public class Frag3 extends Fragment{
         data.add("ISFP");
         data.add("ESTP");
         data.add("ESFP");
+        final int[] board_colors = {R.color.INTJ,R.color.INTP,R.color.ENTJ,R.color.ENTP,
+                R.color.INFJ,R.color.INFP,R.color.ENFJ,R.color.ENFP,
+                R.color.ISTJ,R.color.INFJ,R.color.ESTJ,R.color.ESFJ,
+                R.color.ISTP,R.color.ISFP,R.color.ESTP,R.color.ESFP};
 
 
 
@@ -125,6 +127,8 @@ public class Frag3 extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 txtDate.setText(adapter_dialog.getItem(position));
+                background.setBackgroundResource(board_colors[position]);
+
                 dialog.dismiss();
             }
         });

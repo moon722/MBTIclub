@@ -3,4 +3,26 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="INTJ">#C5BE75</color>
+    <color name="INTP">#516AAF</color>
+    <color name="ENTJ">#404344</color>
+    <color name="ENTP">#A74549</color>
+
+    <color name="INFJ">#D987BB</color>
+    <color name="INFP">#AB70B2</color>
+    <color name="ENFJ">#7160A0</color>
+    <color name="ENFP">#E0545B</color>
+
+
+    <color name="ISTJ">#8B8B8B</color>
+    <color name="ISFJ">#D5DBDB</color>
+    <color name="ESTJ">#468A5B</color>
+    <color name="ESFJ">#BD5997</color>
+
+    <color name="ISTP">#9FCDDA</color>
+    <color name="ISFP">#8BDC83</color>
+    <color name="ESTP">#E09D5D</color>
+    <color name="ESFP">#E9EE90</color>
+
 </resources>
