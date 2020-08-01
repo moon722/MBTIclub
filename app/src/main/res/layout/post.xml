@@ -62,7 +62,7 @@
                     android:id="@+id/Posttitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="오늘의 추천 영화123345!"
+                    android:text="오늘의 추천 영화!"
                     android:textColor="#000000"
                     android:textSize="30dp"
                     android:layout_margin="5dp">
