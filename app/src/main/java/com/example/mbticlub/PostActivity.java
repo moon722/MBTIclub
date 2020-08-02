@@ -29,7 +29,7 @@ public class PostActivity extends AppCompatActivity {
         imgview = (ImageView)findViewById(R.id.img);
         //title = (TextView)findViewById(R.id.Posttitle);
         //content  = (TextView)findViewById(R.id.Postcontent);
-        intent = getIntent();
+        intent = getIntent();//intent 객체를 받아서 저장해오기(getintent())
         imgview.setImageResource(intent.getIntExtra("img",1 ));
         backbtn = (ImageButton)findViewById(R.id.ListBackBtn);
 

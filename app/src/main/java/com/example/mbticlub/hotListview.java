@@ -62,6 +62,8 @@ public class hotListview extends AppCompatActivity {
         hotad.addItem(ContextCompat.getDrawable(this, R.drawable.test3),
                 "당신이 좋아하는 음식은?", "당신이 먹고싶은 음식을 선택해주세요") ;
 
-
+        int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
+        listview.measure(0, expandSpec);
+        listview.getLayoutParams().height = listview.getMeasuredHeight();
     }
 }
