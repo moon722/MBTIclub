@@ -1,6 +1,7 @@
 package com.example.mbticlub;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,12 +37,12 @@ public class Frag3 extends Fragment{
     final CharSequence[] MBTIs = {"INTP","ENTP","INFP","ENFP","ESFP","ISFP"};
 
 
-//    -------------------board list,search
-    String[] board_items;
-    ArrayList<String> board_listitems;
-    ArrayAdapter<String> board_adapter;
+    //    -------------------board list,search
+//    String[] board_items;
+//    ArrayList<String> board_listitems;
+//    BoardListViewAdapter board_adapter;
     ListView board_listview;
-    EditText board_editText;
+    EditText board_editText_filter;
     int current_backgound=R.color.INTP;
 
 
@@ -50,26 +52,42 @@ public class Frag3 extends Fragment{
         view = inflater.inflate(R.layout.frag3,container,false);
         background = (LinearLayout)view.findViewById(R.id.board_background);
 
+        final Context context = container.getContext();
+
+        final BoardListViewAdapter board_adapter=new BoardListViewAdapter();
         board_listview = (ListView)view.findViewById(R.id.board_listview);
-        board_editText=(EditText)view.findViewById(R.id.textSearch);
-        init_boardList();
-        board_listview.setTextFilterEnabled(true);
-        board_editText.addTextChangedListener(new TextWatcher() {
+        board_listview.setAdapter(board_adapter);
+        add_item(board_adapter);
+
+        board_editText_filter=(EditText)view.findViewById(R.id.textSearch);
+//        init_boardList();
+//        board_listview.setTextFilterEnabled(board_adapter.getFilter()!=null);
+
+        board_editText_filter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                board_listview.setFilterText(board_editText.getText().toString());
+                board_adapter.getFilter().filter(s.toString());
+//                board_listview.setFilterText(board_editText_filter.getText().toString());
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(board_editText.getText().length()==0){
-                    board_listview.clearTextFilter();
-                }
+//                String filterText = s.toString();
+//                if(filterText.length()>0){
+//                    board_listview.setFilterText(filterText);
+////                    Toast.makeText(context,filterText,Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+//                    board_listview.clearTextFilter();
+//                }
+//                if(board_editText.getText().length()==0){
+//                    board_listview.clearTextFilter();
+//                }
 
             }
         });
@@ -135,11 +153,15 @@ public class Frag3 extends Fragment{
         return view;
     }
 
-    public void init_boardList(){
-        board_items=new String[]{"전체게시판","자유게시판","여행","연애","게임","운동","영화","독서","소모임"};
-        board_listitems=new ArrayList<>(Arrays.asList(board_items));
-        board_adapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,board_listitems);
-        board_listview.setAdapter(board_adapter);
+    public void add_item(BoardListViewAdapter board_adapter){
+        String[] board_items=new String[]{"전체게시판","자유게시판","여행","연애","게임","운동","영화","독서","소모임"};
+        for(String item:board_items){
+            board_adapter.addItem(item,R.drawable.ic_baseline_star_border_24);
+        }
+
+        board_adapter.notifyDataSetChanged();
+
+
     }
 
 }
