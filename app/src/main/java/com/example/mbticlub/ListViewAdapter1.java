@@ -54,9 +54,11 @@ public class ListViewAdapter1 extends BaseAdapter {
             public void onClick(View v){
                 //해당 리스트 클릭시 이벤트
                 Toast.makeText(v.getContext(),listViewItems.get(pos).getContentStr(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(v.getContext(),hotListview.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                v.getContext().startActivity(intent);
+                if(listViewItems.get(pos).getContentStr() == "핫 게시판") {
+                    Intent intent = new Intent(v.getContext(), hotListview.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    v.getContext().startActivity(intent);
+                }
             }
         });
 
