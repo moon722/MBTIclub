@@ -15,6 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import java.util.ArrayList;
 import java.util.List;
 //대신 ListVewItemAdapter 써볼것
@@ -28,10 +32,19 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
     public ArrayList<BoardListViewItem> filteredItemList = listViewItemList;
     public ArrayList<String> OringinalItemList = OutputToFilter();
 
-    Filter listFilter;
+    public String board_name;
+
+    //fragment transaction
+    private FragmentManager boardFragementManager;
+    private FragmentTransaction boardFragmentTranscation;
+    private FragmentActivity boardFragmentActivity;
+
 
     //BoardListViewAdapter의 생성자
-    public BoardListViewAdapter(){
+    public BoardListViewAdapter(FragmentManager fm, FragmentTransaction ft, FragmentActivity fa){
+        boardFragementManager = fm;
+        boardFragmentTranscation = ft;
+        boardFragmentActivity = fa;
 
     }
 
@@ -53,7 +66,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
 
     //position에 위치한 데이터를 화면에 출력하는데 사용될 View를 리턴
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, final ViewGroup parent){
         final int pos = position;
         final Context context = parent.getContext();
 
@@ -79,6 +92,9 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
             @Override
             public void onClick(View v) {
 
+                board_name = boardlistViewItem.getTitle();
+                boardFragmentTranscation.commit();
+
             }
         });
 
@@ -88,6 +104,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
 
                 if(boardlistViewItem.getIcon()==R.drawable.ic_baseline_star_border_24){
                     filteredItemList.get(position).setIcon(R.drawable.ic_baseline_star_24);
+
 //                    BoardListViewItem b =new BoardListViewItem();
 //                    b.setTitle(boardlistViewItem.getTitle());
 //                    b.setIcon(R.drawable.ic_baseline_star_24);

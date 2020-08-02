@@ -22,6 +22,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.mbticlub.R;
 
@@ -38,26 +41,47 @@ public class Frag3 extends Fragment{
 
 
     //    -------------------board list,search
-//    String[] board_items;
-//    ArrayList<String> board_listitems;
-//    BoardListViewAdapter board_adapter;
     ListView board_listview;
     EditText board_editText_filter;
     int current_backgound=R.color.INTP;
+    //        -----------------
+
+    Bundle arguments;
 
 
     @Nullable
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag3,container,false);
         background = (LinearLayout)view.findViewById(R.id.board_background);
 
+
+        Fragment frag4 = new Frag4();
+        Fragment postlist_frag = new PostListFrag();
+        arguments = new Bundle();
+        arguments.putInt("background",current_backgound);
+        postlist_frag.setArguments(arguments);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_frame,postlist_frag);
+        transaction.addToBackStack(null);
+
+
+
+//        savedInstanceState.putInt("background",current_backgound);
+//        transaction.commit();
+
+
+
+
         final Context context = container.getContext();
 
-        final BoardListViewAdapter board_adapter=new BoardListViewAdapter();
+
+        final BoardListViewAdapter board_adapter=new BoardListViewAdapter(getFragmentManager(),transaction,(MainActivity)getActivity());
         board_listview = (ListView)view.findViewById(R.id.board_listview);
         board_listview.setAdapter(board_adapter);
         add_item(board_adapter);
+        arguments.putString("board_title",board_adapter.board_name);
 
         board_editText_filter=(EditText)view.findViewById(R.id.textSearch);
 //        init_boardList();
@@ -132,6 +156,7 @@ public class Frag3 extends Fragment{
         builder.setView(listView);
         final AlertDialog dialog = builder.create();
         //do action to Edit Text
+
         final EditText txtDate = (EditText)view.findViewById(R.id.editMBTI);
         txtDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +175,16 @@ public class Frag3 extends Fragment{
             }
         });
         background.setBackgroundResource(current_backgound);
+
+//        -----------------
+//        Fragment newFragement = new Frag4();
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//        transaction.replace(R.id.main_frame,newFragement);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+
+
+
         return view;
     }
 

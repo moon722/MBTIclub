@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class BoardListViewItem {
     private int iconDrawable ;
     private String titleStr ;
-    private String descStr ;
+    private String content ;
 
     public void setIcon(int icon) {
         iconDrawable = icon ;
@@ -15,9 +15,9 @@ public class BoardListViewItem {
     public void setTitle(String title) {
         titleStr = title ;
     }
-//    public void setDesc(String desc) {
-//        descStr = desc ;
-//    }
+    public void setDesc(String desc) {
+        content = desc ;
+    }
 
     public int getIcon() {
         return this.iconDrawable ;
@@ -27,8 +27,8 @@ public class BoardListViewItem {
     }
 
 
-//    public String getDesc() {
-//        return this.descStr ;
-//    }
+    public String getDesc() {
+        return this.content ;
+    }
 
 }
