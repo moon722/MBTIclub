@@ -70,7 +70,7 @@ public class BlankFragment2 extends Fragment {
         board_list = (ListView) view.findViewById(R.id.board_list);
 
         List<String> board_data = new ArrayList<>();//arraylist 배열 안에 스트링 형태로 리스트를 만들겠다
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,board_data);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),R.layout.memolist_type,board_data);
         board_list.setAdapter(adapter);
 
         board_data.add("곰돌이푸\n 오늘도 좋은 하루 보내");

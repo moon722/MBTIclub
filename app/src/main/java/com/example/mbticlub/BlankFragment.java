@@ -61,6 +61,10 @@ public class BlankFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_blank, container, false);
 
+//        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+//        layoutParams.height = 100;
+//        view.setLayoutParams(layoutParams);
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -70,13 +74,21 @@ public class BlankFragment extends Fragment {
         board_list = (ListView) view.findViewById(R.id.board_list);
 
         List<String> board_data = new ArrayList<>();//arraylist 배열 안에 스트링 형태로 리스트를 만들겠다
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, board_data);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.memolist_type, board_data);
         board_list.setAdapter(adapter);
 
         board_data.add("자유게시판\n 답글 : 안녕하세요");
         board_data.add("친구요청(1)\n 닉네임 : 오픈클러스터");
-        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP) \n");
-        board_data.add("코인 알림\n뉴스레터 구독을 위한 코인이 부족합니다!\n");
+        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
+        board_data.add("코인 알림\n뉴스레터 구독을 위한 코인이 부족합니다!");
+        board_data.add("자유게시판\n 답글 : 안녕하세요");
+        board_data.add("친구요청(1)\n 닉네임 : 오픈클러스터");
+        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
+        board_data.add("코인 알림\n뉴스레터 구독을 위한 코인이 부족합니다!");
+        board_data.add("자유게시판\n 답글 : 안녕하세요");
+        board_data.add("친구요청(1)\n 닉네임 : 오픈클러스터");
+        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
+        board_data.add("코인 알림\n뉴스레터 구독을 위한 코인이 부족합니다!");
 
         adapter.notifyDataSetChanged();//이 상태를 저장
 

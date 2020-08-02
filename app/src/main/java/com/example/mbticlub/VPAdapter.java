@@ -9,17 +9,12 @@ import java.util.ArrayList;
 
 public class VPAdapter extends FragmentPagerAdapter{
 
-//    private ArrayList<Fragment> items;
-    private ArrayList<String> itext = new ArrayList<String>();
     int mNumofTabs;
 
+    private ArrayList<String> itext = new ArrayList<String>();
     public VPAdapter(FragmentManager fm) {
         super(fm);
         this.mNumofTabs = 2;
-
-//        items = new ArrayList<Fragment>();
-//        items.add(new BlankFragment());
-//        items.add(new BlankFragment2());
 
         itext.add("Notifications");
         itext.add("Message");
@@ -51,4 +46,7 @@ public class VPAdapter extends FragmentPagerAdapter{
         return mNumofTabs;
 //        return items.size();
     }
+
+
+
 }

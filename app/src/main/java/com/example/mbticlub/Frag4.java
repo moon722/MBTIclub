@@ -15,7 +15,6 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class Frag4 extends Fragment {
 
     private View view;
@@ -56,5 +55,7 @@ public class Frag4 extends Fragment {
 
         for(int i=0; i<2; i++) tab.getTabAt(i).setIcon(images.get(i));
 
+
     }
+
 }
