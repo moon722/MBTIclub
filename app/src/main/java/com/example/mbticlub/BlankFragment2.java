@@ -73,14 +73,7 @@ public class BlankFragment2 extends Fragment {
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,board_data);
         board_list.setAdapter(adapter);
 
-        board_data.add("여행");
-        board_data.add("영화");
-        board_data.add("질문과답변");
-        board_data.add("연애");
-        board_data.add("음악");
-        board_data.add("운동");
-        board_data.add("학업");
-        board_data.add("게임");
+        board_data.add("곰돌이푸\n 오늘도 좋은 하루 보내");
 
         adapter.notifyDataSetChanged();//이 상태를 저장
 
