@@ -1,6 +1,8 @@
 package com.example.mbticlub;
 
 import android.content.Context;
+import android.content.Intent;
+import android.sax.StartElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,6 @@ public class ListViewAdapter1 extends BaseAdapter {
 
     private ImageView iconImageView;
     private TextView contentTextView;
-
     private ArrayList<ListViewItem1> listViewItems = new ArrayList<ListViewItem1>();
 
     //생성자
@@ -48,13 +49,17 @@ public class ListViewAdapter1 extends BaseAdapter {
         iconImageView.setImageResource(listViewItem.getIconDrawable());
         contentTextView.setText(listViewItem.getContentStr());
 
-        LinearLayout listItem = (LinearLayout) convertView.findViewById(R.id.listItem);
+        final LinearLayout listItem = (LinearLayout) convertView.findViewById(R.id.listItem);
         listItem.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 //해당 리스트 클릭시 이벤트
                 Toast.makeText(v.getContext(),listViewItems.get(pos).getContentStr(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(),hotListview.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                v.getContext().startActivity(intent);
             }
         });
+
 
         return convertView;
     }
