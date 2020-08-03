@@ -27,18 +27,26 @@
 
         <TextView
             android:id="@+id/edit_post_BoardName"
-            android:layout_width="match_parent"
+            android:layout_width="335dp"
             android:layout_height="70dp"
-            android:gravity="center"
+            android:background="@drawable/mbti_edge"
 
             android:ems="10"
             android:focusable="false"
+            android:gravity="center"
             android:text="전체게시판"
             android:textSize="40sp"
-            android:background="@drawable/mbti_edge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/post_add_button"
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:src="@drawable/ic_baseline_post_add_24" />
+
 
 
 

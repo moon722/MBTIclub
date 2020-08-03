@@ -2,8 +2,6 @@ package com.example.mbticlub;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,27 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.mbticlub.R;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Frag3 extends Fragment{
+    static Fragment postlist_frag;
 
 
     private View view;
@@ -43,16 +35,25 @@ public class Frag3 extends Fragment{
     //    -------------------board list,search
     ListView board_listview;
     EditText board_editText_filter;
-    static int current_backgound_param=R.color.INTP;
+    private static int current_backgound_param=R.color.INTP;
     //        -----------------
 
     static Bundle arguments;
-    public static Frag3 newInstance(int param1){
-        Frag3 fragment = new Frag3();
+    public static PostListFrag newInstance(){
+
+        PostListFrag fragment = new PostListFrag();
         arguments = new Bundle();
-        arguments.putInt("backGround",current_backgound_param);
+        arguments.putInt("backGround", getCurrent_backgound_param());
         fragment.setArguments(arguments);
         return fragment;
+    }
+
+    public static int getCurrent_backgound_param() {
+        return current_backgound_param;
+    }
+
+    public static void setCurrent_backgound_param(int current_backgound_param) {
+        Frag3.current_backgound_param = current_backgound_param;
     }
 
 
@@ -65,13 +66,17 @@ public class Frag3 extends Fragment{
 
 
 //        Fragment frag4 = new Frag4();
-        Fragment postlist_frag = new PostListFrag();
+        postlist_frag = new PostListFrag();
 //        arguments = new Bundle();
 //        arguments.putInt("background",current_backgound_param);
 //        postlist_frag.setArguments(arguments);
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_frame,postlist_frag);
-        transaction.addToBackStack(null);
+//        FragmentManager fm = new FragmentManager;
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+
+        ft.add(R.id.main_frame,postlist_frag);
+//        ft.replace(R.id.main_frame,postlist_frag);
+
 
 
 
@@ -84,7 +89,7 @@ public class Frag3 extends Fragment{
         final Context context = container.getContext();
 
 
-        final BoardListViewAdapter board_adapter=new BoardListViewAdapter(getFragmentManager(),transaction, getActivity());
+        final BoardListViewAdapter board_adapter=new BoardListViewAdapter(Frag3.this);
         board_listview = view.findViewById(R.id.board_listview);
         board_listview.setAdapter(board_adapter);
         add_item(board_adapter);
@@ -174,13 +179,13 @@ public class Frag3 extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 txtDate.setText(adapter_dialog.getItem(position));
-                current_backgound_param=board_colors[position];
-                background.setBackgroundResource(current_backgound_param);
+                setCurrent_backgound_param(board_colors[position]);
+                background.setBackgroundResource(getCurrent_backgound_param());
 
                 dialog.dismiss();
             }
         });
-        background.setBackgroundResource(current_backgound_param);
+        background.setBackgroundResource(getCurrent_backgound_param());
 
 //        -----------------
 //        Fragment newFragement = new Frag4();
@@ -203,6 +208,13 @@ public class Frag3 extends Fragment{
         board_adapter.notifyDataSetChanged();
 
 
+    }
+    //상태를 저장하기 위한 부분
+    //장비의 설정 상태 변경, 화면 방향 변경등의 변화에 의해 프래그먼트가 정지될떄 호출
+    public void OnSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("backGround", getCurrent_backgound_param());
     }
 
 }
