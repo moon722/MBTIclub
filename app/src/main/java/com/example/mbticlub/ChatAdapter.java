@@ -23,14 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 //대신 ListVewItemAdapter 써볼것
 
-public class ChatAdapter extends BaseAdapter implements Filterable {
+public class ChatAdapter extends BaseAdapter {
     private TextView titleTextView;
     private ImageView iconImageView;
 
     //Adapter에 추가된 데이터를 저장하기 위한 ArrayList
     public ArrayList<ChatItem> listViewItemList = new ArrayList<ChatItem>();
     public ArrayList<ChatItem> filteredItemList = listViewItemList;
-    public ArrayList<String> OringinalItemList = OutputToFilter();
 
     //BoardListViewAdapter의 생성자
     public ChatAdapter(FragmentManager fm, FragmentTransaction ft, FragmentActivity fa){
@@ -96,50 +95,6 @@ public class ChatAdapter extends BaseAdapter implements Filterable {
         item.setIcon(icon);
 //        item.setDesc(content);
         listViewItemList.add(item);
-    }
-    public ArrayList<String> OutputToFilter(){
-        ArrayList<String> board_title_list = new ArrayList<String>();
-        for(ChatItem B : listViewItemList){
-            board_title_list.add(B.getTitle());
-        }
-        return board_title_list;
-    }
-
-    @Override
-    public Filter getFilter(){
-        Filter g_filter = new Filter() {
-
-
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                FilterResults results = new FilterResults();
-                List<ChatItem> filteredArrList = new ArrayList<ChatItem>();
-                if(constraint == null || constraint.length()==0){
-                    results.count = listViewItemList.size();
-                    results.values = listViewItemList;
-
-                }
-                else{
-                    constraint = constraint.toString().toLowerCase();
-                    for(int i = 0 ; i < listViewItemList.size(); i++){
-                        ChatItem data = listViewItemList.get(i);
-                        if(data.getTitle().toLowerCase().contains(constraint.toString())){
-                            filteredArrList.add(data);
-                        }
-                    }
-                    results.count = filteredArrList.size();
-                    results.values = filteredArrList;
-                }
-                return results;
-            }
-
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                filteredItemList = (ArrayList<ChatItem>) results.values;
-                notifyDataSetChanged();
-            }
-        };
-        return g_filter;
     }
 
 }
