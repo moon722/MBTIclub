@@ -8,171 +8,89 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageMetadata;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
 
 import java.io.IOException;
 
 import com.example.mbticlub.Model.User;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SignupScreen extends AppCompatActivity {
 
-    EditText edtemail,edtpassword,edtname,edtmobile,edtabout;
-    String email,password,mobile,name,about ;
+    private EditText editText_ID,editText_name,edit_about,editText_mobile,editText_emailAddress,editText_password;
     Button bsignup;
-    StorageReference postrefrance;
-    Uri uri;
-    private FirebaseAuth firebaseAuth;
-    private DatabaseReference mDatabase;
-    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
-        bsignup=findViewById(R.id.bttnsignup);
-        edtemail=findViewById(R.id.editText_emailAddress);
-        edtpassword=findViewById(R.id.editText_password);
-        edtmobile=findViewById(R.id.editText_mobile);
-        edtname=findViewById(R.id.editText_name);
-        edtabout=findViewById(R.id.about);
-        progressDialog=new ProgressDialog(this);
-        //get url of firebase
-        firebaseAuth= FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        postrefrance= FirebaseStorage.getInstance().getReference("userpics");
+        editText_ID = findViewById(R.id.editText_ID);
+        editText_emailAddress = findViewById(R.id.editText_emailAddress);
+        editText_password = findViewById(R.id.editText_password);
+        editText_mobile = findViewById(R.id.editText_mobile);
+        editText_name = findViewById(R.id.editText_name);
+        edit_about = findViewById(R.id.edit_about);
 
+
+//        회원가입 버튼 클릭시 수행
+        bsignup = findViewById(R.id.bsignup);
         bsignup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Register();
-            }
-        });
-    }
-    void pickIMage()
-    {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivityForResult(Intent.createChooser(intent,"select image"),1002);
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==1002){
-            try {
-                uri=data.getData();
-                Bitmap bm= MediaStore.Images.Media.getBitmap(getContentResolver(),data.getData());
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), ""+e, Toast.LENGTH_SHORT).show();
-            }
-        }
-        //the end  onActivityResult
-    }
-    public void Register()
-    {
-        email = edtemail.getText().toString();
-        password = edtpassword.getText().toString();
-        name=edtname.getText().toString();
-        mobile=edtmobile.getText().toString();
-        about=edtabout.getText().toString();
-        if (email.isEmpty()) {
-
-        }
-
-        else  if (password.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "plz Enter Password", Toast.LENGTH_SHORT).show();
-
-        }
-        else {
-
-            progressDialog.setMessage("Registering User....");
-            progressDialog.show();
-
-            firebaseAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                progressDialog.dismiss();
-                                if (uri!=null)
-                                {
-                                    senduserdetails(uri);
-                                }
-
-                            } else {
-                                // If sign in fails, display a message to the user.
-
-                                Toast.makeText(SignupScreen.this, "Registration failed.",
-                                        Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
-                            }
-
-                            // ...
-                        }
-                    });
-
-        }
-
-    }
-    public void senduserdetails(Uri uri)
-    {
+            public void onClick(View v) {
+                //editText에 현재 입력되어있는 값을 가져온다
+                String userID = editText_ID.getText().toString();
+                String userPassword = editText_password.getText().toString();
+                String userName = editText_name.getText().toString();
+                String userMBTI = edit_about.getText().toString();
+                String userMobile = editText_mobile.getText().toString();
+                String userEmail = editText_emailAddress.getText().toString();
 
 
-        final FirebaseUser currentuser = FirebaseAuth.getInstance().getCurrentUser();
-        final String id=currentuser.getUid();
-        final ProgressDialog progressDialog=new ProgressDialog(SignupScreen.this);
-        progressDialog.setCancelable(true);
-        progressDialog.setMessage("Uploading...");
-        progressDialog.show();
-        UploadTask uploadTask;
-        StorageMetadata metadata=new StorageMetadata.Builder().setContentType("image/jpeg").build();
-        uploadTask=postrefrance.child("insta_"+id).putFile(uri,metadata);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                String url=taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                final User user = new User(id, name,email,mobile,url,about);
-                mDatabase.child("Users").child(id).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
-                        progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "User Added ", Toast.LENGTH_SHORT).show();
-                        finish();
-                        Intent i = new Intent(SignupScreen.this, MainActivity.class);
-                        startActivity(i);
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+                            if (success) {//회원 등록에 성공한 경우
+                                Toast.makeText(getApplicationContext(), "띠용", Toast.LENGTH_SHORT).show();
+
+                                //로그인 화면으로 돌아감
+                                Intent intent = new Intent(SignupScreen.this, LoginScreen.class);
+                                SignupScreen.this.startActivity(intent);
+                            } else {//회원등록에 실패한 경우
+                                Toast.makeText(getApplicationContext(), "회원등록을 실패했습니다", Toast.LENGTH_SHORT).show();
+                                return;
+
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                        }
+
                     }
-                });
+                };
+
+                //서버로 Volley를 이용해서 요청
+                SignupRequest signupRequest = new SignupRequest(userID, userPassword, userName, userMBTI, userMobile, userEmail, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(SignupScreen.this);
+                queue.add(signupRequest);
 
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
 }

@@ -14,17 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginScreen extends AppCompatActivity {
-    FirebaseAuth firebaseAuth;
-    EditText edtemail,edtpassword;
+    private EditText editText_ID,editText_password;
     Button blogin,bsignup;
-    TextView forgetpassword;
-    ProgressDialog progressDialog;
+
 
     @Override
 
@@ -32,93 +32,67 @@ public class LoginScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
-        firebaseAuth=FirebaseAuth.getInstance();
-        progressDialog=new ProgressDialog(this);
-        firebaseAuth= FirebaseAuth.getInstance();
-
         //find id of view
-        edtemail=(EditText)findViewById(R.id.editText_emailAddress);
-        edtpassword=(EditText)findViewById(R.id.editText_password);
-        bsignup=(Button)findViewById(R.id.bsignup);
-        blogin=(Button)findViewById(R.id.blogin);
+        editText_ID=findViewById(R.id.editText_emailAddress);
+        editText_password=findViewById(R.id.editText_password);
 
+        bsignup=findViewById(R.id.bsignup);
+        blogin=findViewById(R.id.blogin);
 
-        //check user already login or not
-        if(firebaseAuth.getCurrentUser()!=null)
-        {
-            finish();
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        }
-
-
-        //Perform Action On Button
 
         blogin.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onClick(View view) {
-                // call method for user login
-                userlogin();
+                //get input text from edittext and store in string
+                String userID = editText_ID.getText().toString();
+                String userPassword = editText_password.getText().toString();
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+                            if (success) {//로그인에 성공한 경우
+                                String userID = jsonObject.getString("userID");
+                                String userPassword = jsonObject.getString("userPassword");
+
+                                Toast.makeText(getApplicationContext(), "로그인을 성공했습니다", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginScreen.this, MainActivity.class);
+                                intent.putExtra("userId", userID);
+                                intent.putExtra("userPassword", userPassword);
+
+                                startActivity(intent);
+                            } else {//로그인에 실패한 경우
+                                Toast.makeText(getApplicationContext(), "로그인을 실패했습니다", Toast.LENGTH_SHORT).show();
+                                return;
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                LoginRequest loginRequest = new LoginRequest(userID, userPassword,responseListener);
+                RequestQueue queue = Volley.newRequestQueue(LoginScreen.this);
+                queue.add(loginRequest);
+
             }
         });
+        //회원가입 버튼 클릭시 수행
         bsignup.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onClick(View view) {
                 // call method for user login
-                startActivity(new Intent(getApplicationContext(), SignupScreen.class));
+                Intent intent = new Intent(LoginScreen.this,SignupScreen.class);
+                startActivity(intent);
 
             }
         });
 
 
-    }
-    public void userlogin() {
-
-        //get input text from edittext and store in string
-        String email = edtemail.getText().toString();
-        String password = edtpassword.getText().toString();
-
-
-        //check textfield is filled or not
-        if (email.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "plzz Enter Your Email", Toast.LENGTH_SHORT).show();
-
-        }
-        else if (password.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "plzz Enter Your password", Toast.LENGTH_SHORT).show();
-
-        }
-        else
-        {
-            progressDialog.setMessage("Login User....");
-            progressDialog.show();
-            firebaseAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success
-                                Toast.makeText(LoginScreen.this, "Login Success.",
-                                        Toast.LENGTH_SHORT).show();
-                                finish();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-                            }
-                            else
-                            {
-                                // If sign in fails, display a message to the user.
-
-                                Toast.makeText(LoginScreen.this, "Login failed.",
-                                        Toast.LENGTH_SHORT).show();
-                                //dismiss progress dialog
-                                progressDialog.dismiss();
-                            }
-
-                            // ...
-                        }
-                    });
-        }
     }
 
 

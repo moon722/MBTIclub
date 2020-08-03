@@ -36,14 +36,18 @@ public class PostListFrag extends Fragment{
     Bundle receive_argu;
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.post_listview,container,false);
         background = (LinearLayout)view.findViewById(R.id.board_background);
+        if(getArguments()!=null){
+            current_backgound = getArguments().getInt("backgound");
+        }
 
 //        receive_argu = this.getArguments();
-        current_backgound = getArguments().getInt("background");
+//        current_backgound = getArguments().getInt("background");
 
 
 

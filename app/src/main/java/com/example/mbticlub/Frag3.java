@@ -43,25 +43,32 @@ public class Frag3 extends Fragment{
     //    -------------------board list,search
     ListView board_listview;
     EditText board_editText_filter;
-    int current_backgound=R.color.INTP;
+    static int current_backgound_param=R.color.INTP;
     //        -----------------
 
-    Bundle arguments;
+    static Bundle arguments;
+    public static Frag3 newInstance(int param1){
+        Frag3 fragment = new Frag3();
+        arguments = new Bundle();
+        arguments.putInt("backGround",current_backgound_param);
+        fragment.setArguments(arguments);
+        return fragment;
+    }
 
 
     @Nullable
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag3,container,false);
         background = (LinearLayout)view.findViewById(R.id.board_background);
 
 
-        Fragment frag4 = new Frag4();
+//        Fragment frag4 = new Frag4();
         Fragment postlist_frag = new PostListFrag();
-        arguments = new Bundle();
-        arguments.putInt("background",current_backgound);
-        postlist_frag.setArguments(arguments);
+//        arguments = new Bundle();
+//        arguments.putInt("background",current_backgound_param);
+//        postlist_frag.setArguments(arguments);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.main_frame,postlist_frag);
         transaction.addToBackStack(null);
@@ -81,7 +88,7 @@ public class Frag3 extends Fragment{
         board_listview = (ListView)view.findViewById(R.id.board_listview);
         board_listview.setAdapter(board_adapter);
         add_item(board_adapter);
-        arguments.putString("board_title",board_adapter.board_name);
+//        arguments.putString("board_title",board_adapter.board_name);
 
         board_editText_filter=(EditText)view.findViewById(R.id.textSearch);
 //        init_boardList();
@@ -168,13 +175,13 @@ public class Frag3 extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 txtDate.setText(adapter_dialog.getItem(position));
-                current_backgound=board_colors[position];
-                background.setBackgroundResource(current_backgound);
+                current_backgound_param=board_colors[position];
+                background.setBackgroundResource(current_backgound_param);
 
                 dialog.dismiss();
             }
         });
-        background.setBackgroundResource(current_backgound);
+        background.setBackgroundResource(current_backgound_param);
 
 //        -----------------
 //        Fragment newFragement = new Frag4();

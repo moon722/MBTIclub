@@ -36,6 +36,20 @@
             android:inputType="textEmailAddress"
             android:id="@+id/editText_name"
             />
+
+        <EditText
+            android:id="@+id/editText_ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_person_outline_black_24dp"
+            android:drawablePadding="16dp"
+            android:hint="ID"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:textColorHint="#1d1d1d" />
+
         <EditText
             android:drawableLeft="@drawable/ic_person_outline_black_24dp"
             android:layout_marginTop="16dp"
@@ -47,7 +61,7 @@
             android:textColorHint="#1d1d1d"
             android:maxLines="1"
             android:inputType="textEmailAddress"
-            android:id="@+id/about"
+            android:id="@+id/edit_about"
             />
         <EditText
             android:drawableLeft="@drawable/ic_phone_black_24dp"
@@ -89,7 +103,7 @@
             android:drawablePadding="16dp"/>
 
         <Button
-            android:id="@+id/bttnsignup"
+            android:id="@+id/bsignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" Sign Up"
