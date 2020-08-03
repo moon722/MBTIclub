@@ -1,7 +1,7 @@
 package com.example.mbticlub;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +9,8 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -39,12 +36,16 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
     private FragmentTransaction boardFragmentTranscation;
     private FragmentActivity boardFragmentActivity;
 
+    private Frag3 fragment;
+
+
 
     //BoardListViewAdapter의 생성자
-    public BoardListViewAdapter(FragmentManager fm, FragmentTransaction ft, FragmentActivity fa){
-        boardFragementManager = fm;
-        boardFragmentTranscation = ft;
-        boardFragmentActivity = fa;
+    public BoardListViewAdapter(Frag3 frag3){
+        boardFragementManager = frag3.getFragmentManager();
+        boardFragmentTranscation = boardFragementManager.beginTransaction();
+//        boardFragmentTranscation = frag3.getActivity().getSupportFragmentManager().beginTransaction();
+        this.fragment = frag3;
 
     }
 
@@ -77,8 +78,8 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
 
         }
         //화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        titleTextView=(TextView)convertView.findViewById(R.id.board_item_title);
-        iconImageView = (ImageView) convertView.findViewById(R.id.board_item_icon);
+        titleTextView= convertView.findViewById(R.id.board_item_title);
+        iconImageView = convertView.findViewById(R.id.board_item_icon);
 
 
         final BoardListViewItem boardlistViewItem = filteredItemList.get(position);
@@ -91,9 +92,15 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
 
             @Override
             public void onClick(View v) {
-
-                board_name = boardlistViewItem.getTitle();
+                Bundle bundle = new Bundle();
+                bundle.putInt("backgound",Frag3.getCurrent_backgound_param());
+                bundle.putString("board_title",boardlistViewItem.getTitle());
+                Frag3.postlist_frag.setArguments(bundle);
+//                Frag3.newInstance();
+                boardFragmentTranscation.replace(R.id.main_frame,Frag3.postlist_frag);
+                boardFragmentTranscation.addToBackStack(null);
                 boardFragmentTranscation.commit();
+
 
             }
         });
