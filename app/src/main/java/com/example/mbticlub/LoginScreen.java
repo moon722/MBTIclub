@@ -56,8 +56,8 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //get input text from edittext and store in string
-                String userID = editText_ID.getText().toString();
-                String userPassword = editText_password.getText().toString();
+                String user_id = editText_ID.getText().toString();
+                String user_password = editText_password.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -66,13 +66,13 @@ public class LoginScreen extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
                             if (success) {//로그인에 성공한 경우
-                                String userID = jsonObject.getString("userID");
-                                String userPassword = jsonObject.getString("userPassword");
+                                String user_id = jsonObject.getString("user_id");
+                                String user_password = jsonObject.getString("user_password");
 
                                 Toast.makeText(getApplicationContext(), "로그인을 성공했습니다", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginScreen.this, MainActivity.class);
-                                intent.putExtra("userId", userID);
-                                intent.putExtra("userPassword", userPassword);
+                                intent.putExtra("user_id", user_id);
+                                intent.putExtra("user_password", user_password);
 
                                 startActivity(intent);
                             } else {//로그인에 실패한 경우
@@ -85,7 +85,7 @@ public class LoginScreen extends AppCompatActivity {
                         }
                     }
                 };
-                LoginRequest loginRequest = new LoginRequest(userID, userPassword,responseListener);
+                LoginRequest loginRequest = new LoginRequest(user_id, user_password,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(LoginScreen.this);
                 queue.add(loginRequest);
 

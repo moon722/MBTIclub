@@ -16,16 +16,16 @@ public class SignupRequest extends StringRequest {
     private Map<String, String> map;
 
 
-    public SignupRequest(String userID, String userPassword, String userName, String userMBTI, String userMobile, String userEmail, Response.Listener<String> listener) {
+    public SignupRequest(String user_id, String user_password, String user_name, String user_mbti, String user_mobile, String user_email, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("userID",userID);
-        map.put("userPassword",userPassword);
-        map.put("userName",userName);
-        map.put("userMBTI",userMBTI);
-        map.put("userMobile",userMobile);
-        map.put("userEmail",userEmail);
+        map.put("user_id",user_id);
+        map.put("user_password",user_password);
+        map.put("user_name",user_name);
+        map.put("user_mbti",user_mbti);
+        map.put("user_mobile",user_mobile);
+        map.put("user_email",user_email);
 
     }
 

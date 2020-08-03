@@ -49,12 +49,12 @@ public class SignupScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //editText에 현재 입력되어있는 값을 가져온다
-                String userID = editText_ID.getText().toString();
-                String userPassword = editText_password.getText().toString();
-                String userName = editText_name.getText().toString();
-                String userMBTI = edit_about.getText().toString();
-                String userMobile = editText_mobile.getText().toString();
-                String userEmail = editText_emailAddress.getText().toString();
+                String user_id = editText_ID.getText().toString();
+                String user_password = editText_password.getText().toString();
+                String user_name = editText_name.getText().toString();
+                String user_mbti = edit_about.getText().toString();
+                String user_mobile = editText_mobile.getText().toString();
+                String user_email = editText_emailAddress.getText().toString();
 
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -64,8 +64,7 @@ public class SignupScreen extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
                             if (success) {//회원 등록에 성공한 경우
-                                Toast.makeText(getApplicationContext(), "띠용", Toast.LENGTH_SHORT).show();
-
+                                Toast.makeText(getApplicationContext(), "회원등록을 성공했습니다", Toast.LENGTH_SHORT).show();
                                 //로그인 화면으로 돌아감
                                 Intent intent = new Intent(SignupScreen.this, LoginScreen.class);
                                 SignupScreen.this.startActivity(intent);
@@ -84,7 +83,7 @@ public class SignupScreen extends AppCompatActivity {
                 };
 
                 //서버로 Volley를 이용해서 요청
-                SignupRequest signupRequest = new SignupRequest(userID, userPassword, userName, userMBTI, userMobile, userEmail, responseListener);
+                SignupRequest signupRequest = new SignupRequest(user_id, user_password, user_name, user_mbti, user_mobile, user_email, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(SignupScreen.this);
                 queue.add(signupRequest);
 

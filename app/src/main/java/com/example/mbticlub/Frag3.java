@@ -61,7 +61,7 @@ public class Frag3 extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag3,container,false);
-        background = (LinearLayout)view.findViewById(R.id.board_background);
+        background = view.findViewById(R.id.board_background);
 
 
 //        Fragment frag4 = new Frag4();
@@ -84,13 +84,13 @@ public class Frag3 extends Fragment{
         final Context context = container.getContext();
 
 
-        final BoardListViewAdapter board_adapter=new BoardListViewAdapter(getFragmentManager(),transaction,(MainActivity)getActivity());
-        board_listview = (ListView)view.findViewById(R.id.board_listview);
+        final BoardListViewAdapter board_adapter=new BoardListViewAdapter(getFragmentManager(),transaction, getActivity());
+        board_listview = view.findViewById(R.id.board_listview);
         board_listview.setAdapter(board_adapter);
         add_item(board_adapter);
 //        arguments.putString("board_title",board_adapter.board_name);
 
-        board_editText_filter=(EditText)view.findViewById(R.id.textSearch);
+        board_editText_filter= view.findViewById(R.id.textSearch);
 //        init_boardList();
 //        board_listview.setTextFilterEnabled(board_adapter.getFilter()!=null);
 
@@ -105,7 +105,6 @@ public class Frag3 extends Fragment{
 //                board_listview.setFilterText(board_editText_filter.getText().toString());
 
             }
-
             @Override
             public void afterTextChanged(Editable s) {
 //                String filterText = s.toString();
@@ -164,7 +163,7 @@ public class Frag3 extends Fragment{
         final AlertDialog dialog = builder.create();
         //do action to Edit Text
 
-        final EditText txtDate = (EditText)view.findViewById(R.id.editMBTI);
+        final EditText txtDate = view.findViewById(R.id.editMBTI);
         txtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

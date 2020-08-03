@@ -45,14 +45,14 @@ public class BlankFragment2 extends Fragment {
      * @return A new instance of fragment BlankFragment2.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment2 newInstance(String param1, String param2) {
-        BlankFragment2 fragment = new BlankFragment2();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static BlankFragment2 newInstance(String param1, String param2) {
+//        BlankFragment2 fragment = new BlankFragment2();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     private View view;
     ListView chat_listview;
@@ -60,24 +60,24 @@ public class BlankFragment2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_blank, container, false);
+        view = inflater.inflate(R.layout.fragment_blank2, container, false);
 
-        Fragment postlist_frag = new PostListFrag();
+//        Fragment postlist_frag = new PostListFrag();
 //        arguments = new Bundle();
 //        arguments.putInt("background",current_backgound_param);
 //        postlist_frag.setArguments(arguments);
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_frame,postlist_frag);
-        transaction.addToBackStack(null);
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//        transaction.replace(R.id.main_frame,postlist_frag);
+//        transaction.addToBackStack(null);
 
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-        final ChatAdapter chat_adapter = new ChatAdapter(getFragmentManager(), transaction, (MainActivity) getActivity());
-        chat_listview = (ListView) view.findViewById(R.id.board_listview);
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
+//
+        final ChatAdapter chat_adapter = new ChatAdapter();
+        chat_listview = view.findViewById(R.id.chat_list);
         chat_listview.setAdapter(chat_adapter);
         add_item(chat_adapter);
 //        arguments.putString("board_title",board_adapter.board_name);
@@ -86,9 +86,10 @@ public class BlankFragment2 extends Fragment {
     }
 
     public void add_item(ChatAdapter chatlist_adapter) {
-        String[] chat_items = new String[]{"곰돌이푸\n 오늘도 좋은 하루 보내", "인주\n 나는 코딩이 좋아"};
-        for(String chat_title:chat_items){
-            chatlist_adapter.addItem(chat_title,R.drawable.ic_baseline_star_border_24);
+        String[] chat_user = new String[]{"곰돌이푸","인주"};
+        String[] chat_items = new String[]{"오늘도 좋은 하루 보내", "나는 코딩이 좋아"};
+        for(int i = 0; i < 2; i++){
+            chatlist_adapter.addItem(chat_user[i],R.drawable.ic_baseline_person_24,chat_items[i]);
         }
 
         chatlist_adapter.notifyDataSetChanged();

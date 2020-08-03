@@ -14,12 +14,12 @@ public class LoginRequest extends StringRequest {
     private Map<String, String> map;
 
 
-    public LoginRequest(String userId, String userPassword, Response.Listener<String> listener) {
+    public LoginRequest(String user_id, String user_password, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("userId",userId);
-        map.put("userPassword",userPassword);
+        map.put("user_id",user_id);
+        map.put("user_password",user_password);
 
 
     }

@@ -26,13 +26,15 @@ import java.util.List;
 public class ChatAdapter extends BaseAdapter {
     private TextView titleTextView;
     private ImageView iconImageView;
+    private TextView contentTextView;
+
 
     //Adapter에 추가된 데이터를 저장하기 위한 ArrayList
     public ArrayList<ChatItem> listViewItemList = new ArrayList<ChatItem>();
     public ArrayList<ChatItem> filteredItemList = listViewItemList;
 
     //BoardListViewAdapter의 생성자
-    public ChatAdapter(FragmentManager fm, FragmentTransaction ft, FragmentActivity fa){
+    public ChatAdapter(){
     }
 
     //Adapter에 사용되는 데이터의 개수를 리턴
@@ -64,8 +66,10 @@ public class ChatAdapter extends BaseAdapter {
 
         }
         //화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        titleTextView=(TextView)convertView.findViewById(R.id.board_item_title);
-        iconImageView = (ImageView) convertView.findViewById(R.id.board_item_icon);
+        titleTextView= convertView.findViewById(R.id.chat_item_title);
+        iconImageView = convertView.findViewById(R.id.chat_item_icon);
+        contentTextView = convertView.findViewById(R.id.chat_item_content);
+
 
 
         final ChatItem chatItem = filteredItemList.get(position);
@@ -73,7 +77,7 @@ public class ChatAdapter extends BaseAdapter {
         //아이템 내 각 위젯에 데이터 반영
         titleTextView.setText(chatItem.getTitle());
         iconImageView.setImageResource(chatItem.getIcon());
-//        contentTextView.setText(listViewItem.getDesc());
+        contentTextView.setText(chatItem.getDesc());
         titleTextView.setOnClickListener(new AdapterView.OnClickListener(){
 
             @Override
@@ -88,12 +92,12 @@ public class ChatAdapter extends BaseAdapter {
     }
 
     //아이템 데이터 추가를 위한 함수
-    public void addItem(String title, int icon){
+    public void addItem(String title, int icon,String content){
         ChatItem item = new ChatItem();
 
         item.setTitle(title);
         item.setIcon(icon);
-//        item.setDesc(content);
+        item.setDesc(content);
         listViewItemList.add(item);
     }
 
