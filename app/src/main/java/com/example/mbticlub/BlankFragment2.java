@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,12 +55,20 @@ public class BlankFragment2 extends Fragment {
     }
 
     private View view;
-    private ListView board_list;
+    ListView chat_listview;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_blank, container, false);
+
+        Fragment postlist_frag = new PostListFrag();
+//        arguments = new Bundle();
+//        arguments.putInt("background",current_backgound_param);
+//        postlist_frag.setArguments(arguments);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_frame,postlist_frag);
+        transaction.addToBackStack(null);
 
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -67,16 +76,16 @@ public class BlankFragment2 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        board_list = (ListView) view.findViewById(R.id.board_list);
-
-        List<String> board_data = new ArrayList<>();//arraylist 배열 안에 스트링 형태로 리스트를 만들겠다
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),R.layout.memolist_type,board_data);
-        board_list.setAdapter(adapter);
-
-        board_data.add("곰돌이푸\n 오늘도 좋은 하루 보내");
-
-        adapter.notifyDataSetChanged();//이 상태를 저장
+        final ChatAdapter chat_adapter = new ChatAdapter(getFragmentManager(), transaction, (MainActivity) getActivity());
+        chat_listview = (ListView) view.findViewById(R.id.board_listview);
+        chat_listview.setAdapter(chat_adapter);
+        add_item(chat_adapter);
+//        arguments.putString("board_title",board_adapter.board_name);
 
         return view;
+    }
+
+    public void add_item(ChatAdapter chatlist_adapter) {
+        String[] chat_items = new String[]{"곰돌이푸\n 오늘도 좋은 하루 보내", "인주\n 나는 코딩이 좋아"};
     }
 }
