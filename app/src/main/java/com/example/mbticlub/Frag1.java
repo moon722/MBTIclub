@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.drawable.DrawableUtils;
 import com.google.android.material.tabs.TabLayout;
 
+import java.nio.channels.InterruptedByTimeoutException;
 import java.util.ArrayList;
 
 
@@ -74,7 +77,18 @@ public class Frag1 extends Fragment {
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getActivity(),hotListview.class);
+//                Intent intent;
+//                switch (position){
+//                    case 0: intent = new Intent(getActivity(),hotListview.class);
+//                    break;
+//                    case 1: intent = new Intent(getActivity(),Favorite_list.class);
+//                    break;
+//                    case 2: intent = new Intent(getActivity(),infoList.class);
+//                    break;
+//                    default:
+//                        intent = null;
+//                        break;
+//                }
 //                startActivity(intent);
 //            }
 //        });

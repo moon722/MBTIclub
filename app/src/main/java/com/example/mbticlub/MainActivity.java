@@ -2,6 +2,8 @@ package com.example.mbticlub;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -12,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView; // 하단바
@@ -24,8 +28,21 @@ public class MainActivity extends AppCompatActivity {
     private Frag5 frag5;
     private ListView board_list;
 
-
-
+//    // 뒤로가기 버튼 입력시간이 담길 long 객체
+//    private long pressedTime = 0;
+//
+//    // 리스너 생성
+//    public interface OnBackPressedListener {
+//        public void onBack();
+//    }
+//
+//    // 리스너 객체 생성
+//    private OnBackPressedListener mBackListener;
+//
+//    // 리스너 설정 메소드
+//    public void setOnBackPressedListener(OnBackPressedListener listener) {
+//        mBackListener = listener;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,26 +121,34 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
-        // 기존 뒤로 가기 버튼의 기능을 막기 위해 주석 처리 또는 삭제
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        }else {
+            //super.onBackPressed();
+            // 기존 뒤로 가기 버튼의 기능을 막기 위해 주석 처리 또는 삭제
 
-        // 마지막으로 뒤로 가기 버튼을 눌렀던 시간에 2.5초를 더해 현재 시간과 비교 후
-        // 마지막으로 뒤로 가기 버튼을 눌렀던 시간이 2.5초가 지났으면 Toast 출력
-        // 2500 milliseconds = 2.5 seconds
-        if (System.currentTimeMillis() > backKeyPressedTime + 2500) {
-            backKeyPressedTime = System.currentTimeMillis();
-            toast = Toast.makeText(this, "뒤로 가기 버튼을 한 번 더 누르시면 종료됩니다.", Toast.LENGTH_LONG);
-            toast.show();
-            return;
-        }
-        // 마지막으로 뒤로 가기 버튼을 눌렀던 시간에 2.5초를 더해 현재 시간과 비교 후
-        // 마지막으로 뒤로 가기 버튼을 눌렀던 시간이 2.5초가 지나지 않았으면 종료
-        if (System.currentTimeMillis() <= backKeyPressedTime + 2500) {
-            finish();
-            toast.cancel();
-            toast = Toast.makeText(this,"이용해 주셔서 감사합니다.",Toast.LENGTH_LONG);
-            toast.show();
+            // 마지막으로 뒤로 가기 버튼을 눌렀던 시간에 2.5초를 더해 현재 시간과 비교 후
+            // 마지막으로 뒤로 가기 버튼을 눌렀던 시간이 2.5초가 지났으면 Toast 출력
+            // 2500 milliseconds = 2.5 seconds
+            if (System.currentTimeMillis() > backKeyPressedTime + 2500) {
+                backKeyPressedTime = System.currentTimeMillis();
+                toast = Toast.makeText(this, "뒤로 가기 버튼을 한 번 더 누르시면 종료됩니다.", Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+            // 마지막으로 뒤로 가기 버튼을 눌렀던 시간에 2.5초를 더해 현재 시간과 비교 후
+            // 마지막으로 뒤로 가기 버튼을 눌렀던 시간이 2.5초가 지나지 않았으면 종료
+            if (System.currentTimeMillis() <= backKeyPressedTime + 2500) {
+                ActivityCompat.finishAffinity(this);
+                //super.onBackPressed();
+                toast.cancel();
+                toast = Toast.makeText(this, "이용해 주셔서 감사합니다.", Toast.LENGTH_LONG);
+                toast.show();
+            }
         }
     }
+
+
+
 
 }

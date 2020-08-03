@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +16,7 @@ public class hotListview extends AppCompatActivity {
 
     private  ListViewAdapter hotad;
     private  ListView listview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,8 @@ public class hotListview extends AppCompatActivity {
 //                return false;
 //            }
 //        };
+
+
 
         // 첫 번째 아이템 추가.
         hotad.addItem(ContextCompat.getDrawable(this, R.drawable.test1), "당신의 취미는?", "당신의 취미에 대해 알려주세요");

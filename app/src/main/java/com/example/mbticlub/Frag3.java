@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedDispatcherOwner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -32,7 +34,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Frag3 extends Fragment{
+public class Frag3 extends Fragment {
+
 
 
     private View view;
@@ -189,7 +192,7 @@ public class Frag3 extends Fragment{
 //        transaction.addToBackStack(null);
 //        transaction.commit();
 
-
+        MainActivity mainActivity = new MainActivity();
 
         return view;
     }
@@ -206,3 +209,5 @@ public class Frag3 extends Fragment{
     }
 
 }
+
+
