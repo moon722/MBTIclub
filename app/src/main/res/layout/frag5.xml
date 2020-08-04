@@ -19,8 +19,7 @@
             android:paddingLeft="16dp"
             android:paddingTop="16dp"
             android:paddingRight="16dp"
-            android:paddingBottom="16dp"
-            android:layout_marginLeft="15dp">
+            android:paddingBottom="16dp">
 
 
             <ImageView
@@ -42,65 +41,41 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="20dp"
-            android:layout_height="20dp">
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:orientation="vertical"
             android:gravity="center"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:weightSum="9">
 
-            <TextView
-                android:id="@+id/text1"
+            <Button
+                android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="게시물"
+                android:drawableStart="@drawable/ic_baseline_assignment_24"
                 android:gravity="center"
-                android:textSize="28sp"
-                android:background="@drawable/back"
-                android:onClick="onClick"/>
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/empty_text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10dp" />
+                android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="70pt"
                 android:layout_height="wrap_content"
-                android:background="@drawable/back"
-                android:text="친구"
-                android:gravity="center"
-                android:textSize="28sp"
-                android:onClick="onClick"/>
-
-            <TextView
-                android:id="@+id/empty_text3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10dp" />
-
-            <TextView
-                android:id="@+id/text3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="공란"
-                android:background="@drawable/back"
-                android:textSize="28sp"
-                android:gravity="center"
-                android:ems="4"
-                android:onClick="onClick"/>
+                android:drawableStart="@drawable/ic_baseline_people_24"
+                android:text="친구 관리"
+                android:textSize="25sp"
+                android:gravity="center" />
         </LinearLayout>
     </LinearLayout>
 
