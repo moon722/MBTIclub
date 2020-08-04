@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,6 +25,7 @@ public class Frag5 extends Fragment {
     Intent intent;
     Button btn1;
     Button btn2;
+    List<Integer> list_position;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,6 +50,21 @@ public class Frag5 extends Fragment {
 
         adapter.notifyDataSetChanged();
 
+
+
+        person_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 2:
+                        Intent coin_intent = new Intent(getActivity(),FragCoin.class);
+                        getActivity().startActivity(coin_intent);
+                }
+
+            }
+        });
+
+
         btn1 = (Button)view.findViewById(R.id.button1);
 
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +74,8 @@ public class Frag5 extends Fragment {
                 startActivity(intent);
             }
         });
+
+
 
 
         return view;

@@ -27,6 +27,7 @@
         <activity android:name=".infoList" />
         <activity android:name=".Favorite_list" />
         <activity android:name=".PostlistActivity" />
+        <activity android:name=".FragCoin"/>
     </application>
 
 </manifest>

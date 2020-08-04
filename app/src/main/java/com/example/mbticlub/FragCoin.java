@@ -23,6 +23,7 @@ public class FragCoin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.frag5_coin);
+        getIntent();
 
         ListView listView = (ListView) findViewById(R.id.coin_list);
 
