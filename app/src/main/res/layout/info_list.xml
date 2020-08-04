@@ -15,14 +15,14 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             android:stateListAnimator="@null"
             android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:id="@+id/BackBtn_info">
+            android:id="@+id/BackBtn_info"
+            android:background="#03A9F4">
         </ImageButton>
 
         <TextView
@@ -33,8 +33,7 @@
             android:layout_margin="10dp"
             android:text="정보게시판"
             android:textColor="#FFFFFF"
-            android:textSize="28dp"
-            android:layout_weight="7">
+            android:textSize="28dp">
 
         </TextView>
     </LinearLayout>

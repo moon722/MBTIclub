@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 public class Favorite_list extends AppCompatActivity {
 
@@ -19,6 +20,9 @@ public class Favorite_list extends AppCompatActivity {
         for(String item:board_items){
             fa_board.addItem(R.drawable.ic_baseline_star_border_24,item);
         }
+
+        ListView fa_list = findViewById(R.id.fa_listview);
+        fa_list.setAdapter(fa_board);
 
         fa_board.notifyDataSetChanged();
 

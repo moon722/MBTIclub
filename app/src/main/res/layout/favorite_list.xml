@@ -12,17 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/common_google_signin_btn_text_light_pressed">
+        android:background="#DE1E1D1D">
 
         <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             android:stateListAnimator="@null"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:id="@+id/BackBtn_fa">
+            android:id="@+id/BackBtn_fa"
+            android:background="#DE1E1D1D">
         </ImageButton>
 
         <TextView

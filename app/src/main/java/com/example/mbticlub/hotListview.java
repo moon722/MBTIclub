@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -33,7 +34,6 @@ public class hotListview extends AppCompatActivity {
 //                return false;
 //            }
 //        };
-
 
 
         // 첫 번째 아이템 추가.
@@ -69,5 +69,13 @@ public class hotListview extends AppCompatActivity {
         int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
         listview.measure(0, expandSpec);
         listview.getLayoutParams().height = listview.getMeasuredHeight();
+
+        ImageButton back_ho = findViewById(R.id.BackBtn_ho);
+        back_ho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }
