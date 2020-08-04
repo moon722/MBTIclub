@@ -29,6 +29,9 @@
         <activity android:name=".PostlistActivity" />
         <activity android:name=".FragCoin"/>
         <activity android:name=".friends_list" />
+        <activity android:name=".FragArticle" />
+
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

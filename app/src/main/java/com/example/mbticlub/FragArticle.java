@@ -12,6 +12,7 @@ public class FragArticle extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getIntent();
         setContentView(R.layout.frag5_communityarticle);
     }
 }

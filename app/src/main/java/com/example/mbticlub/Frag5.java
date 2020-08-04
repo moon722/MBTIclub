@@ -76,8 +76,8 @@ public class Frag5 extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(getActivity(),FragArticle.class);
-                startActivity(intent);
+                Intent btn1_intent = new Intent(getActivity(),FragArticle.class);
+                startActivity(btn1_intent);
             }
         });
 
@@ -87,8 +87,8 @@ public class Frag5 extends Fragment {
         btn2.setOnClickListener(new TextView.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),friends_list.class);
-                startActivity(intent);
+                Intent btn2_intent = new Intent(getActivity(),friends_list.class);
+                startActivity(btn2_intent);
             }
         });
 
