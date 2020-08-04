@@ -30,12 +30,12 @@ public class FragCoin extends AppCompatActivity {
         // 어댑터 안에 데이터 담기
         adapter = new CoinAdapter();
 
-        adapter.addItem(new CoinItem("무료 코인 받기", null, R.drawable.ic_baseline_person_24));
-        adapter.addItem(new CoinItem("코인 50개", "₩3000", R.drawable.ic_baseline_person_24));
-        adapter.addItem(new CoinItem("코인 100개", "₩5000", R.drawable.ic_baseline_person_24));
-        adapter.addItem(new CoinItem("코인 210개", "₩10000", R.drawable.ic_baseline_person_24));
-        adapter.addItem(new CoinItem("코인 320개", "₩15000", R.drawable.ic_baseline_person_24));
-        adapter.addItem(new CoinItem("코인 550개", "₩25000", R.drawable.ic_baseline_person_24));
+        adapter.addItem(new CoinItem("무료 코인 받기", null, R.drawable.ic_baseline_star_24));
+        adapter.addItem(new CoinItem("코인 50개", "₩3000", R.drawable.ic_baseline_star_24));
+        adapter.addItem(new CoinItem("코인 100개", "₩5000", R.drawable.ic_baseline_star_24));
+        adapter.addItem(new CoinItem("코인 210개", "₩10000", R.drawable.ic_baseline_star_24));
+        adapter.addItem(new CoinItem("코인 320개", "₩15000", R.drawable.ic_baseline_star_24));
+        adapter.addItem(new CoinItem("코인 550개", "₩25000", R.drawable.ic_baseline_star_24));
 
         // 리스트 뷰에 어댑터 설정
         listView.setAdapter(adapter);
