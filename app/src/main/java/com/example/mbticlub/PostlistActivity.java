@@ -35,12 +35,15 @@ public class PostlistActivity extends AppCompatActivity {
     ListView post_listview;
     EditText post_editText_filter;
     int current_backgound;
+    String current_board_title;
 
     //        -----------------
     Bundle receive_argu;
 
     ImageButton back_button;
+    ImageButton add_button;
     Intent intent;
+    Intent next_intent;
 
 
 
@@ -57,7 +60,11 @@ public class PostlistActivity extends AppCompatActivity {
 
 
         final TextView board_title = findViewById(R.id.edit_post_BoardName);
+
+        current_board_title=intent.getStringExtra("board_title");
         board_title.setText(intent.getStringExtra("board_title"));
+        next_intent = new Intent(PostlistActivity.this, PostResister.class);
+        next_intent.putExtra("board_title",intent.getStringExtra("board_title"));
 //        if (getArguments() != null) {
 //            current_backgound = getArguments().getInt("backgound");
 //            board_title.setText(getArguments().getString("board_title"));
@@ -69,7 +76,20 @@ public class PostlistActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+//                Intent next_intent1 = new Intent(PostlistActivity.this, Frag3.class);
+//                PostlistActivity.this.startActivity(next_intent1);
                 onBackPressed();
+
+
+            }
+        });
+
+        add_button = findViewById(R.id.post_add_button);
+        add_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                PostlistActivity.this.startActivity(next_intent);
+
             }
         });
 
@@ -106,6 +126,13 @@ public class PostlistActivity extends AppCompatActivity {
 
 
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        current_board_title=next_intent.getStringExtra("board_title");
+//        current_backgound = next_intent.getIntExtra("background", R.color.INTJ);
+//    }
 
     public void add_item(PostListViewAdapter postlist_adapter){
         String[] post_content=new String[]{"전체게시판","자유게시판","여행","연애","게임","운동","영화","독서","소모임"};

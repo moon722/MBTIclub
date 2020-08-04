@@ -78,6 +78,7 @@ class PostListViewAdapter extends BaseAdapter implements Filterable {
         contentTextView = (TextView)convertView.findViewById(R.id.post_item_content);
 
 
+
         final BoardListViewItem postlistViewItem = filteredItemList.get(position);
 
         //아이템 내 각 위젯에 데이터 반영
@@ -92,6 +93,7 @@ class PostListViewAdapter extends BaseAdapter implements Filterable {
 
             }
         });
+
 
         iconImageView.setOnClickListener(new AdapterView.OnClickListener(){
             @Override

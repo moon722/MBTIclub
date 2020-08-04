@@ -1,7 +1,9 @@
 package com.example.mbticlub;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +51,9 @@ public class LoginScreen extends AppCompatActivity {
 
         bsignup=findViewById(R.id.bsignup);
         blogin=findViewById(R.id.blogin);
+        final Context context = this;
+
+
 
 
         blogin.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +78,14 @@ public class LoginScreen extends AppCompatActivity {
                                 Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                                 intent.putExtra("user_id", user_id);
                                 intent.putExtra("user_password", user_password);
+
+                                PreferenceManager.setString(context,"user_id",user_id);
+                                /*
+                                디비에서 갖고와서 put
+                                 */
+
+
+
 
                                 startActivity(intent);
                             } else {//로그인에 실패한 경우
