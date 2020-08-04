@@ -25,13 +25,17 @@ public class PostActivity extends AppCompatActivity {
         intent = getIntent();
         Log.e("포스트 도착",getString(intent.getIntExtra("img", 1)));
 
-
-        imgview = (ImageView)findViewById(R.id.img);
-        //title = (TextView)findViewById(R.id.Posttitle);
-        //content  = (TextView)findViewById(R.id.Postcontent);
-        intent = getIntent();//intent 객체를 받아서 저장해오기(getintent())
-        imgview.setImageResource(intent.getIntExtra("img",1 ));
         backbtn = (ImageButton)findViewById(R.id.ListBackBtn);
+        imgview = (ImageView)findViewById(R.id.img);
+        title = (TextView)findViewById(R.id.Posttitle);
+        content  = (TextView)findViewById(R.id.Postcontent);
+        intent = getIntent();   //intent 객체를 받아서 저장해오기(getintent())
+
+        imgview.setImageResource(intent.getIntExtra("img",1 ));
+
+        title.setText("asdf");//이미지 리소스에 대한 title, content 데이터 db에서 받아오기
+        content.setText("asdf");
+
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override

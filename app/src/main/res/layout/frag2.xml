@@ -66,6 +66,16 @@
                     android:text="오늘의 슥- 질문"
                     android:textColor="#000000"
                     android:textSize="25dp">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/quest"
+                    android:gravity="right"
+                    android:text="바로가기>>"
+                    android:textSize="15dp">
+
 
                 </TextView>
 
@@ -83,7 +93,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="150dp"
-                android:text="오늘의 슥- 질문"
+                android:text="오늘의 추천"
                 android:textColor="#000000"
                 android:textSize="25dp">
 
