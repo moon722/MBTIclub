@@ -1,7 +1,7 @@
 package com.example.mbticlub;
 
 import android.content.Context;
-import android.os.Bundle;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +37,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
     private FragmentActivity boardFragmentActivity;
 
     private Frag3 fragment;
+    Intent intent;
 
 
 
@@ -44,7 +45,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
     public BoardListViewAdapter(Frag3 frag3){
         boardFragementManager = frag3.getFragmentManager();
         boardFragmentTranscation = boardFragementManager.beginTransaction();
-//        boardFragmentTranscation = frag3.getActivity().getSupportFragmentManager().beginTransaction();
+//        intent  = new Intent(frag3.getActivity(),PostlistActivity());
         this.fragment = frag3;
 
     }
@@ -83,6 +84,8 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
 
 
         final BoardListViewItem boardlistViewItem = filteredItemList.get(position);
+        intent = new Intent(fragment.getActivity(),PostlistActivity.class);
+
 
         //아이템 내 각 위젯에 데이터 반영
         titleTextView.setText(boardlistViewItem.getTitle());
@@ -92,14 +95,20 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
 
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("backgound",Frag3.getCurrent_backgound_param());
-                bundle.putString("board_title",boardlistViewItem.getTitle());
-                Frag3.postlist_frag.setArguments(bundle);
-//                Frag3.newInstance();
-                boardFragmentTranscation.replace(R.id.main_frame,Frag3.postlist_frag);
-                boardFragmentTranscation.addToBackStack(null);
-                boardFragmentTranscation.commit();
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("backgound",Frag3.getCurrent_backgound_param());
+//                bundle.putString("board_title",boardlistViewItem.getTitle());
+//                Frag3.postlist_frag.setArguments(bundle);
+////                Frag3.newInstance();
+//                boardFragmentTranscation.replace(R.id.main_frame,Frag3.postlist_frag);
+//                notifyDataSetChanged();
+////                boardFragmentTranscation.addToBackStack(null);
+//                boardFragmentTranscation.commit();
+                intent.putExtra("background", Frag3.getCurrent_backgound_param());
+                intent.putExtra("board_title",boardlistViewItem.getTitle());
+
+                fragment.getActivity().startActivity(intent);
+
 
 
             }

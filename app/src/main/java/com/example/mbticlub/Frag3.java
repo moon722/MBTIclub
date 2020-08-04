@@ -38,15 +38,15 @@ public class Frag3 extends Fragment{
     private static int current_backgound_param=R.color.INTP;
     //        -----------------
 
-    static Bundle arguments;
-    public static PostListFrag newInstance(){
-
-        PostListFrag fragment = new PostListFrag();
-        arguments = new Bundle();
-        arguments.putInt("backGround", getCurrent_backgound_param());
-        fragment.setArguments(arguments);
-        return fragment;
-    }
+//    static Bundle arguments;
+//    public static PostListFrag newInstance(){
+//
+//        PostListFrag fragment = new PostListFrag();
+//        arguments = new Bundle();
+//        arguments.putInt("backGround", getCurrent_backgound_param());
+//        fragment.setArguments(arguments);
+//        return fragment;
+//    }
 
     public static int getCurrent_backgound_param() {
         return current_backgound_param;
@@ -66,15 +66,15 @@ public class Frag3 extends Fragment{
 
 
 //        Fragment frag4 = new Frag4();
-        postlist_frag = new PostListFrag();
+//        postlist_frag = new PostListFrag();
 //        arguments = new Bundle();
 //        arguments.putInt("background",current_backgound_param);
 //        postlist_frag.setArguments(arguments);
 //        FragmentManager fm = new FragmentManager;
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
 
 
-        ft.add(R.id.main_frame,postlist_frag);
+//        ft.add(R.id.main_frame,postlist_frag);
 //        ft.replace(R.id.main_frame,postlist_frag);
 
 
@@ -216,5 +216,8 @@ public class Frag3 extends Fragment{
 
         outState.putInt("backGround", getCurrent_backgound_param());
     }
+//    public interface OnApplySelectedListner{
+//        public void onCatagoryApplySelected(int background, String board_title);
+//    }
 
 }

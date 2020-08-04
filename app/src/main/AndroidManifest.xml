@@ -24,6 +24,7 @@
         <activity android:name=".PostActivity" />
         <activity android:name=".infoList" />
         <activity android:name=".Favorite_list"/>
+        <activity android:name=".PostlistActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
