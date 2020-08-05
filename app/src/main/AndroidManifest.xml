@@ -26,6 +26,12 @@
         <activity android:name=".Favorite_list"/>
         <activity android:name=".PostlistActivity"/>
         <activity android:name=".QuestionActivity"/>
+        <activity android:name=".FragCoin"/>
+        <activity android:name=".friends_list"/>
+        <activity android:name=".FragArticle"/>
+        <activity android:name=".FragSubscribe"/>
+        <activity android:name=".FragMyInfo"/>
+        <activity android:name=".FragSurvey"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
