@@ -19,7 +19,8 @@
             android:paddingLeft="16dp"
             android:paddingTop="16dp"
             android:paddingRight="16dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="16dp"
+            android:layout_marginLeft="15dp">
 
 
             <ImageView
@@ -35,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="페이커(ENTP)"
+                android:text="Faker (ENTP)"
                 android:textSize="25dp"
                 android:layout_gravity="center"/>
 
@@ -57,10 +58,10 @@
                 android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="게시물"
+                android:text="My Post"
                 android:drawableStart="@drawable/ic_baseline_assignment_24"
                 android:gravity="center"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/empty_text1"
@@ -73,8 +74,8 @@
                 android:layout_width="70pt"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_baseline_people_24"
-                android:text="친구 관리"
-                android:textSize="25sp"
+                android:text="Friends"
+                android:textSize="18dp"
                 android:gravity="center" />
         </LinearLayout>
     </LinearLayout>
