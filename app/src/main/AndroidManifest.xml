@@ -26,6 +26,7 @@
         <activity android:name=".Favorite_list"/>
         <activity android:name=".PostlistActivity"/>
         <activity android:name=".QuestionActivity"/>
+        <activity android:name=".PostResister"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
