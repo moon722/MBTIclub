@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import java.util.List;
  */
 public class BlankFragment2 extends Fragment {
 
-    Button btn;
+    ImageButton btn;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,7 +87,7 @@ public class BlankFragment2 extends Fragment {
         add_item(chat_adapter);
 //        arguments.putString("board_title",board_adapter.board_name);
 
-        btn = (Button)view.findViewById(R.id.kbutton);
+        btn = view.findViewById(R.id.chat_button);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
