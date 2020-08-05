@@ -43,9 +43,9 @@ public class Frag5 extends Fragment {
         person_list.setAdapter(adapter);
 
         person_data.add("Edit Profile");
-        person_data.add("Subscription information");
-        person_data.add("Charging coin");
-        person_data.add("Survey management");
+        person_data.add("Subscription");
+        person_data.add("Charge Up");
+        person_data.add("Research History");
         person_data.add("Logout");
 
         adapter.notifyDataSetChanged();
