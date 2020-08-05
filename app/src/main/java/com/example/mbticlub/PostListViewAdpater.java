@@ -1,6 +1,7 @@
 package com.example.mbticlub;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +72,8 @@ class PostListViewAdapter extends BaseAdapter implements Filterable {
         iconImageView = (ImageView) convertView.findViewById(R.id.post_item_icon);
         titleTextView = (TextView) convertView.findViewById(R.id.post_item_title);
         contentTextView = (TextView)convertView.findViewById(R.id.post_item_content2);
-
+        useridTextView.setTextColor(Color.WHITE);
+        contentTextView.setTextColor(Color.WHITE);
 
 
         final MListViewItem postlistViewItem = filteredItemList.get(position);
