@@ -1,5 +1,6 @@
 package com.example.mbticlub;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class BlankFragment2 extends Fragment {
+
+    Button btn;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,7 +86,19 @@ public class BlankFragment2 extends Fragment {
         add_item(chat_adapter);
 //        arguments.putString("board_title",board_adapter.board_name);
 
+        btn = (Button)view.findViewById(R.id.kbutton);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent btn1_intent = new Intent(getActivity(), FragArticle.class);
+                startActivity(btn1_intent);
+            }
+        });
+
+
         return view;
+
     }
 
     public void add_item(ChatAdapter chatlist_adapter) {
@@ -94,4 +110,5 @@ public class BlankFragment2 extends Fragment {
 
         chatlist_adapter.notifyDataSetChanged();
     }
+
 }
