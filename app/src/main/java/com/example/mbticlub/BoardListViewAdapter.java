@@ -25,8 +25,8 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
     private ImageView iconImageView;
 
     //Adapter에 추가된 데이터를 저장하기 위한 ArrayList
-    public ArrayList<BoardListViewItem> listViewItemList = new ArrayList<BoardListViewItem>();
-    public ArrayList<BoardListViewItem> filteredItemList = listViewItemList;
+    public ArrayList<MListViewItem> listViewItemList = new ArrayList<MListViewItem>();
+    public ArrayList<MListViewItem> filteredItemList = listViewItemList;
     public ArrayList<String> OringinalItemList = OutputToFilter();
 
     public String board_name;
@@ -83,7 +83,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
         iconImageView = convertView.findViewById(R.id.board_item_icon);
 
 
-        final BoardListViewItem boardlistViewItem = filteredItemList.get(position);
+        final MListViewItem boardlistViewItem = filteredItemList.get(position);
         intent = new Intent(fragment.getActivity(),PostlistActivity.class);
 
 
@@ -106,6 +106,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
 //                boardFragmentTranscation.commit();
                 intent.putExtra("background", Frag3.getCurrent_backgound_param());
                 intent.putExtra("board_title",boardlistViewItem.getTitle());
+                PreferenceManager.setString(context,"current_board_title",boardlistViewItem.getTitle());
 
                 fragment.getActivity().startActivity(intent);
 
@@ -154,7 +155,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
     }
     //아이템 데이터 추가를 위한 함수
     public void addItem(String title, int icon){
-        BoardListViewItem item = new BoardListViewItem();
+        MListViewItem item = new MListViewItem("","","","");
 
 
         item.setTitle(title);
@@ -164,7 +165,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
     }
     public ArrayList<String> OutputToFilter(){
         ArrayList<String> board_title_list = new ArrayList<String>();
-        for(BoardListViewItem B : listViewItemList){
+        for(MListViewItem B : listViewItemList){
             board_title_list.add(B.getTitle());
         }
         return board_title_list;
@@ -178,7 +179,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults results = new FilterResults();
-                List<BoardListViewItem> filteredArrList = new ArrayList<BoardListViewItem>();
+                List<MListViewItem> filteredArrList = new ArrayList<MListViewItem>();
                 if(constraint == null || constraint.length()==0){
                     results.count = listViewItemList.size();
                     results.values = listViewItemList;
@@ -187,7 +188,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
                 else{
                     constraint = constraint.toString().toLowerCase();
                     for(int i = 0 ; i < listViewItemList.size(); i++){
-                        BoardListViewItem data = listViewItemList.get(i);
+                        MListViewItem data = listViewItemList.get(i);
                         if(data.getTitle().toLowerCase().contains(constraint.toString())){
                             filteredArrList.add(data);
                         }
@@ -200,7 +201,7 @@ public class BoardListViewAdapter extends BaseAdapter implements Filterable {
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                filteredItemList = (ArrayList<BoardListViewItem>) results.values;
+                filteredItemList = (ArrayList<MListViewItem>) results.values;
                 notifyDataSetChanged();
             }
         };

@@ -55,6 +55,8 @@
         android:id="@+id/post_register_button"
         android:layout_width="399dp"
         android:layout_height="match_parent"
-        android:background="#000000" />
+        android:text="버튼"
+        android:textSize="40dp"
+        android:background="#102938" />
 
 </LinearLayout>

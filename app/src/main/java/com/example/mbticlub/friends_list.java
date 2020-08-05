@@ -34,17 +34,17 @@ public class friends_list extends AppCompatActivity {
 //        for(int i=0; i<2; i++) tabs.getTabAt(i).setIcon(images.get(i));
         //tabs.setTabGravity(tabs.GRAVITY_FILL);
 
-//        TabPagerAdapter pagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
-//        final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager_fr);
-//        viewPager.setAdapter(pagerAdapter);
+        TabPagerAdapter pagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager_fr);
+        viewPager.setAdapter(pagerAdapter);
         //viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
-//        TabLayout tabs = findViewById(R.id.tabs);
+       TabLayout tabs = findViewById(R.id.tabs);
 //        tabs.addTab(tabs.newTab().setText("My friends"));
 //        tabs.addTab(tabs.newTab().setText("add friends"));
 //        tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_baseline_person_24));
 //        tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_baseline_notifications_24));
 
-//        tabs.setupWithViewPager(viewPager);
+        tabs.setupWithViewPager(viewPager);
 //        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
 //            public void onTabSelected (TabLayout.Tab tab){
 //                viewPager.setCurrentItem(tab.getPosition());
