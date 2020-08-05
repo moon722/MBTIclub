@@ -1,7 +1,5 @@
 package com.example.mbticlub;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,15 +8,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.example.mbticlub.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,12 +42,11 @@ public class Frag5 extends Fragment {
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, person_data);
         person_list.setAdapter(adapter);
 
-        person_data.add("내 정보 관리");
-        person_data.add("구독 정보");
-        person_data.add("코인 충전");
-        person_data.add("설문 관리");
-        person_data.add("로그아웃");
-        person_data.add("계정탈퇴");
+        person_data.add("Edit Profile");
+        person_data.add("Subscription information");
+        person_data.add("Charging coin");
+        person_data.add("Survey management");
+        person_data.add("Logout");
 
         adapter.notifyDataSetChanged();
 
@@ -62,11 +56,23 @@ public class Frag5 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
+                    case 0:
+                        Intent my_article = new Intent(getActivity(),FragMyInfo.class);
+                        getActivity().startActivity(my_article);
+                        break;
+                    case 1:
+                        Intent my_subscribe = new Intent(getActivity(),FragSubscribe.class);
+                        getActivity().startActivity(my_subscribe);
+                        break;
                     case 2:
-                        Intent coin_intent = new Intent(getActivity(),FragCoin.class);
+                        Intent coin_intent = new Intent(getActivity(), FragCoin.class);
                         getActivity().startActivity(coin_intent);
+                        break;
+                    case 3:
+                        Intent my_survey = new Intent(getActivity(),FragSurvey.class);
+                        getActivity().startActivity(my_survey);
+                        break;
                 }
-
             }
         });
 
@@ -76,7 +82,7 @@ public class Frag5 extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent btn1_intent = new Intent(getActivity(),FragArticle.class);
+                Intent btn1_intent = new Intent(getActivity(), FragArticle.class);
                 startActivity(btn1_intent);
             }
         });
@@ -87,7 +93,7 @@ public class Frag5 extends Fragment {
         btn2.setOnClickListener(new TextView.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent btn2_intent = new Intent(getActivity(),friends_list.class);
+                Intent btn2_intent = new Intent(getActivity(), friends_list.class);
                 startActivity(btn2_intent);
             }
         });

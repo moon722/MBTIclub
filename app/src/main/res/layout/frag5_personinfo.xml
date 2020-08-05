@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="2"
-            android:text="내 정보 관리"
+            android:text="Edit Profile"
             android:textColor="#000000"
             android:textSize="28dp">
         </TextView>
@@ -51,8 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="프로필 변경"
-            android:textSize="30dp"
+            android:text="Change Profile Photo"
+            android:textSize="20dp"
             android:textColor="#1E90FF"/>
     </LinearLayout>
 
@@ -60,7 +60,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
             android:inputType="text"
-            android:text="페이커"
+            android:text="Faker"
             android:hint="Name"/>
     </RelativeLayout>
 
@@ -108,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text=""/>
+            android:text="Phone Number"/>
 
         <EditText
             android:id="@+id/phonenumber_input"
@@ -116,8 +117,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="10dp"
-            android:inputType="text"
-            android:hint="Phone Number"/>
+            android:layout_marginBottom="10dp"
+            android:inputType="phone"
+            android:hint="01012345678"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -128,7 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text=""/>
+            android:text="Email Address"/>
 
         <EditText
             android:id="@+id/gender_input"
@@ -136,7 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="10dp"
-            android:inputType="text"
-            android:hint="Email"/>
+            android:inputType="textEmailAddress"
+            android:hint="mbtiy@gmail.com"/>
     </RelativeLayout>
 </LinearLayout>

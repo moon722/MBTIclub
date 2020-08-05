@@ -13,33 +13,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class FragCoin extends AppCompatActivity {
-    CoinAdapter adapter;
-
+public class FragSubscribe extends AppCompatActivity {
     EditText editText;
     EditText editText2;
+
+    ListView listview;
+    SubscribeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frag5_coin);
+        setContentView(R.layout.frag5_my_subscribes);
+
+
+        // 리스트뷰 참조 및 Adapter달기
+        listview = (ListView) findViewById(R.id.my_subscribes_list);
+        listview.setAdapter(adapter);
         getIntent();
 
-        ListView listView = (ListView) findViewById(R.id.coin_list);
-
         // 어댑터 안에 데이터 담기
-        adapter = new CoinAdapter();
+        adapter = new FragSubscribe.SubscribeAdapter();
 
-        adapter.addItem(new CoinItem("Get Free Coin", "Free", R.drawable.freecoin));
-        adapter.addItem(new CoinItem("50 Coin", "₩3000", R.drawable.fiftycoin));
-        adapter.addItem(new CoinItem("100 Coin", "₩5000", R.drawable.onehundredcoin));
-        adapter.addItem(new CoinItem("220 Coin", "₩10000", R.drawable.twocoin));
+        adapter.addItem(new CoinItem("August week 1st 2020 ", "2020 Films to Recommend to People of ENTP Type", R.drawable.mbtiform));
+        adapter.addItem(new CoinItem("July week 4th 2020 ", "MBTI Type Specific Study Method", R.drawable.fiftycoin));
+        adapter.addItem(new CoinItem("July week 3th 2020 ", "Characteristics of MBTI type in relation to views on life", R.drawable.mbtiform));
+        adapter.addItem(new CoinItem("July week 2nd 2020 ", "How your MBTI influence your income", R.drawable.twocoin));
 
         // 리스트 뷰에 어댑터 설정
-        listView.setAdapter(adapter);
+        listview.setAdapter(adapter);
 
         // 이벤트 처리 리스너 설정
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CoinItem item = (CoinItem) adapter.getItem(position);
@@ -49,7 +53,7 @@ public class FragCoin extends AppCompatActivity {
 
     }
 
-    class CoinAdapter extends BaseAdapter {
+    class SubscribeAdapter extends BaseAdapter {
         ArrayList<CoinItem> items = new ArrayList<CoinItem>();
 
 
@@ -77,11 +81,11 @@ public class FragCoin extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             // 뷰 객체 재사용
-            CoinItemView view = null;
+            Subscribe view = null;
             if (convertView == null) {
-                view = new CoinItemView(getApplicationContext());
+                view = new Subscribe(getApplicationContext());
             } else {
-                view = (CoinItemView) convertView;
+                view = (Subscribe) convertView;
             }
 
             CoinItem item = items.get(position);

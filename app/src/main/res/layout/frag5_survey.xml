@@ -25,14 +25,14 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="2"
-            android:text="Charging coin"
+            android:text="Survey management"
             android:textColor="#000000"
-            android:textSize="25dp">
+            android:textSize="20dp">
         </TextView>
     </LinearLayout>
 
     <ListView
-        android:id="@+id/coin_list"
+        android:id="@+id/personinfo_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ListView>
