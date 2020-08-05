@@ -26,7 +26,7 @@
         <activity android:name=".Favorite_list"/>
         <activity android:name=".PostlistActivity"/>
         <activity android:name=".QuestionActivity"/>
-        <activity android:name=".PostResister"/>
+        <activity android:name=".PostRegister"/>
         <activity android:name=".FragCoin"/>
         <activity android:name=".friends_list"/>
         <activity android:name=".FragArticle"/>

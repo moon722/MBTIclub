@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class PostResister extends AppCompatActivity {
+public class PostRegister extends AppCompatActivity {
     Intent intent;
     EditText edit_post_title;
     EditText edit_post_content;
@@ -27,7 +26,7 @@ public class PostResister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_resister);
+        setContentView(R.layout.activity_post_register);
         intent = getIntent();
         final Context context = this;
 
@@ -77,9 +76,9 @@ public class PostResister extends AppCompatActivity {
                 };
 
                 //서버로 Volley를 이용해서 요청
-                PostResisterRequest postResisterRequest = new PostResisterRequest(post_user_id, board_title, post_title, post_content, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(PostResister.this);
-                queue.add(postResisterRequest);
+                PostRegisterRequest postRegisterRequest = new PostRegisterRequest(post_user_id, board_title, post_title, post_content, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(PostRegister.this);
+                queue.add(postRegisterRequest);
 
 
             }

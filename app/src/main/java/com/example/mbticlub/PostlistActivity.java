@@ -1,17 +1,10 @@
 package com.example.mbticlub;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -19,18 +12,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -38,7 +24,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PostlistActivity extends AppCompatActivity {
 
@@ -76,7 +61,7 @@ public class PostlistActivity extends AppCompatActivity {
 
         current_board_title = intent.getStringExtra("board_title");
         text_board_title.setText(intent.getStringExtra("board_title"));
-        next_intent = new Intent(PostlistActivity.this, PostResister.class);
+        next_intent = new Intent(PostlistActivity.this, PostRegister.class);
         next_intent.putExtra("board_title", intent.getStringExtra("board_title"));
 //        if (getArguments() != null) {
 //            current_backgound = getArguments().getInt("backgound");
