@@ -88,6 +88,8 @@ public class BlankFragment extends Fragment {
         board_data.add("자유게시판\n 답글 : 안녕하세요");
         board_data.add("친구요청(1)\n 닉네임 : 오픈클러스터");
         board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
+        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
+        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
         board_data.add("코인 알림\n뉴스레터 구독을 위한 코인이 부족합니다!");
 
         adapter.notifyDataSetChanged();//이 상태를 저장

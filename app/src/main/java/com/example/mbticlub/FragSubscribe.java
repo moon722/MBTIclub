@@ -34,10 +34,10 @@ public class FragSubscribe extends AppCompatActivity {
         // 어댑터 안에 데이터 담기
         adapter = new FragSubscribe.SubscribeAdapter();
 
-        adapter.addItem(new CoinItem("August week 1st 2020 ", "2020 Films to Recommend to People of ENTP Type", R.drawable.mbtiform));
-        adapter.addItem(new CoinItem("July week 4th 2020 ", "MBTI Type Specific Study Method", R.drawable.fiftycoin));
+        adapter.addItem(new CoinItem("August week 1st 2020 ", "2020 Films to Recommend to People of ENTP Type", R.drawable.movieaward));
+        adapter.addItem(new CoinItem("July week 4th 2020 ", "MBTI Type Specific Study Method", R.drawable.study));
         adapter.addItem(new CoinItem("July week 3th 2020 ", "Characteristics of MBTI type in relation to views on life", R.drawable.mbtiform));
-        adapter.addItem(new CoinItem("July week 2nd 2020 ", "How your MBTI influence your income", R.drawable.twocoin));
+        adapter.addItem(new CoinItem("July week 2nd 2020 ", "How your MBTI influence your income", R.drawable.mbtiincome));
 
         // 리스트 뷰에 어댑터 설정
         listview.setAdapter(adapter);
