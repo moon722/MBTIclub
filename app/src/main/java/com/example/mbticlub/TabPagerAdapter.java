@@ -37,7 +37,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
 //        return itext.get(position);
 //    }
 
-//    @Override
+    //    @Override
 //    public Fragment getItem(int position){
 //        switch (position){
 //            case 0:
@@ -51,7 +51,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
 //
 //        }
 //    }
-@Override
+    @Override
     public Fragment getItem(int position){
         switch (position){
             case 0:
