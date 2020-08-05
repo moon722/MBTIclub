@@ -3,6 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="balckDefault">#000000</color>
+    <color name="whiteDefault">#FFFFFF</color>
 
     <color name="INTJ">#C5BE75</color>
     <color name="INTP">#516AAF</color>
