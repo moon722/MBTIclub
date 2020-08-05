@@ -1,7 +1,6 @@
 package com.example.mbticlub;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,27 +8,22 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
 //대신 ListVewItemAdapter 써볼것
 
 class PostListViewAdapter extends BaseAdapter implements Filterable {
+    TextView useridTextView;
     private TextView titleTextView;
     private ImageView iconImageView;
     private TextView contentTextView;
 
     //Adapter에 추가된 데이터를 저장하기 위한 ArrayList
-    public ArrayList<BoardListViewItem> listViewItemList = new ArrayList<BoardListViewItem>();
-    public ArrayList<BoardListViewItem> filteredItemList = listViewItemList;
+    public ArrayList<MListViewItem> listViewItemList = new ArrayList<MListViewItem>();
+    public ArrayList<MListViewItem> filteredItemList = listViewItemList;
 //    public ArrayList<String> OringinalItemList = OutputToFilter();
 
 
@@ -73,18 +67,20 @@ class PostListViewAdapter extends BaseAdapter implements Filterable {
 
         }
         //화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        titleTextView=(TextView)convertView.findViewById(R.id.post_item_title);
+        useridTextView = (TextView) convertView.findViewById(R.id.post_item_user_id);
         iconImageView = (ImageView) convertView.findViewById(R.id.post_item_icon);
-        contentTextView = (TextView)convertView.findViewById(R.id.post_item_content);
+        titleTextView = (TextView) convertView.findViewById(R.id.post_item_title);
+        contentTextView = (TextView)convertView.findViewById(R.id.post_item_content2);
 
 
 
-        final BoardListViewItem postlistViewItem = filteredItemList.get(position);
+        final MListViewItem postlistViewItem = filteredItemList.get(position);
 
         //아이템 내 각 위젯에 데이터 반영
+        useridTextView.setText(postlistViewItem.getUser_id());
         titleTextView.setText(postlistViewItem.getTitle());
         iconImageView.setImageResource(postlistViewItem.getIcon());
-        contentTextView.setText(postlistViewItem.getDesc());
+        contentTextView.setText(postlistViewItem.getContent());
         titleTextView.setOnClickListener(new AdapterView.OnClickListener(){
 
             @Override
@@ -110,13 +106,16 @@ class PostListViewAdapter extends BaseAdapter implements Filterable {
     }
 
     //아이템 데이터 추가를 위한 함수
-    public void addItem(String title, int icon,String content){
-        BoardListViewItem item = new BoardListViewItem();
+    public void addItem(String user_id,String title,String content,int icon){
+        MListViewItem item = new MListViewItem("","","","");
 
 
+
+        item.setUser_id(user_id);
         item.setTitle(title);
+//        item.setIcon(icon);
+        item.setContent(content);
         item.setIcon(icon);
-        item.setDesc(content);
         listViewItemList.add(item);
     }
 
@@ -128,7 +127,7 @@ class PostListViewAdapter extends BaseAdapter implements Filterable {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults results = new FilterResults();
-                List<BoardListViewItem> filteredArrList = new ArrayList<BoardListViewItem>();
+                List<MListViewItem> filteredArrList = new ArrayList<MListViewItem>();
                 if(constraint == null || constraint.length()==0){
                     results.count = listViewItemList.size();
                     results.values = listViewItemList;
@@ -137,8 +136,8 @@ class PostListViewAdapter extends BaseAdapter implements Filterable {
                 else{
                     constraint = constraint.toString().toLowerCase();
                     for(int i = 0 ; i < listViewItemList.size(); i++){
-                        BoardListViewItem data = listViewItemList.get(i);
-                        if(data.getDesc().toLowerCase().contains(constraint.toString())){
+                        MListViewItem data = listViewItemList.get(i);
+                        if(data.getContent().toLowerCase().contains(constraint.toString())){
                             filteredArrList.add(data);
                         }
                     }
@@ -150,7 +149,7 @@ class PostListViewAdapter extends BaseAdapter implements Filterable {
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                filteredItemList = (ArrayList<BoardListViewItem>) results.values;
+                filteredItemList = (ArrayList<MListViewItem>) results.values;
                 notifyDataSetChanged();
             }
         };

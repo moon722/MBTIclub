@@ -74,6 +74,7 @@ public class LoginScreen extends AppCompatActivity {
                                 String user_id = jsonObject.getString("user_id");
                                 String user_password = jsonObject.getString("user_password");
 
+
                                 Toast.makeText(getApplicationContext(), "로그인을 성공했습니다", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                                 intent.putExtra("user_id", user_id);
@@ -81,10 +82,8 @@ public class LoginScreen extends AppCompatActivity {
 
                                 PreferenceManager.setString(context,"user_id",user_id);
                                 /*
-                                디비에서 갖고와서 put
+                                디비에서 갖고와서 set
                                  */
-
-
 
 
                                 startActivity(intent);
