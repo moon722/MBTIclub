@@ -16,7 +16,6 @@
             android:layout_width="148dp"
             android:layout_height="70dp"
             android:gravity="center"
-
             android:ems="10"
             android:focusable="false"
             android:inputType="textPersonName"
@@ -28,16 +27,12 @@
             app:layout_constraintTop_toTopOf="parent"/>
 <!--            android:autofillHints="" 사용자의 정보를 가져와서 사용-->
 
-
-
         <TextView
             android:id="@+id/board_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="게시판"
             android:textSize="40sp" />
-
-
 
     </LinearLayout>
 
