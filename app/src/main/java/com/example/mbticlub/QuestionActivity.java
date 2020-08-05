@@ -1,105 +1,102 @@
 package com.example.mbticlub;
 
-
-
+import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.HttpResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 public class QuestionActivity extends AppCompatActivity {
     ImageView questimg;
     TextView questtitle;
     ImageButton questyes, questno;
     ImageButton backbtn;
-    int questox, i = 0;
-    String myJSON;
 
-    private static final String TAG_RESULTS = "result";
+
+    private static String TAG = "QuestionActivity";
+
+    private static final String TAG_JSON="webnautes";
     private static final String TAG_ID = "quest_id";
     private static final String TAG_TITLE = "quest_title";
-    private static final String TAG_OX = "quest_ox";
-
-    JSONArray quest = null;
-    ArrayList<HashMap<String, String>> marrayList;
-    int[] image = new int[]{R.drawable.test1, R.drawable.test2};
+    private static final String TAG_OX ="quest_ox";
+    int i = 0;
+    private TextView mTextViewResult;
+    ArrayList<HashMap<String, String>> mArrayList;
+    ListView mlistView;
+    String jsonString;
+    ArrayList<Question> questionArrayList;
+    int list_cnt;
+    String [] getid;
+    String [] gettitle;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_question);
 
-        questimg = (ImageView)findViewById(R.id.questimg);
-        questtitle = (TextView)findViewById(R.id.questtitle);
-        questyes = (ImageButton)findViewById(R.id.questyes);
-        questno = (ImageButton)findViewById(R.id.questno);
-        backbtn = (ImageButton)findViewById(R.id.ListBackBtn);
 
-        questimg.setImageResource(R.drawable.test3);
-        questtitle.setText("당신이 좋아하는 음식은?");
+        questimg = (ImageView) findViewById(R.id.questimg);
+        questtitle = (TextView) findViewById(R.id.questtitle);
+        questyes = (ImageButton) findViewById(R.id.questyes);
+        questno = (ImageButton) findViewById(R.id.questno);
+        backbtn = (ImageButton) findViewById(R.id.ListBackBtn);
+//        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
+//        mlistView = (ListView) findViewById(R.id.listView_main_list);
+//        mArrayList = new ArrayList<>();
+
+
+
+
+
+        String url = "http://mbtiy.dothome.co.kr/quest2.php";
+        selectDatabase selectDatabase = new selectDatabase(url, null);
+        selectDatabase.execute();// AsyncTask는 .excute()로 실행된다.
+
+
+
+
 
 
         questyes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
-                            if (success) {//로그인에 성공한 경우
-                                String quest_id = jsonObject.getString("quest_id");
-                                String quest_title = jsonObject.getString("quest_title");
-
-
-                            } else {//로그인에 실패한 경우
-                                Toast.makeText(getApplicationContext(), "불러오기를 실패했습니다", Toast.LENGTH_SHORT).show();
-                                return;
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                QuestionDBItem questionRequest = new QuestionDBItem(quest_id, quest_title,responseListener);
-                RequestQueue queue = Volley.newRequestQueue(QuestionActivity.this);
-                queue.add(questionRequest);
-                    }
-                }
-
                 i++;
-                if (i>image.length){
+                if (i >= getid.length) {
                     onBackPressed();
+                } else {
+                    int resId = getResources().getIdentifier(getid[i], "drawable", getPackageName());
+                    questimg.setImageResource(resId);
+                    questtitle.setText(gettitle[i]);
                 }
-                else{
-                    questimg.setImageResource(image[i]);
-                    Log.e("이미지 설정 완료",getString(image[i]));
-                    GetData task = new GetData();
-                    task.execute(getString(image[i]));//image[i]에 대한 title db에서 가져오기
-                    questox = 1;
-                    //db 테이블 데이터 갱신
-                }
-
-
 
             }
         });
@@ -107,17 +104,75 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 i++;
-                if (i>image.length){
+                if (i >= getid.length) {
                     onBackPressed();
-                }
-                else{
-                    questimg.setImageResource(image[i]);
-                    Log.e("이미지 설정 완료",getString(image[i]));
-                    GetData task = new GetData();
-                    task.execute(getString(image[i]));//image[i]에 대한 title db에서 가져오기
-                    questox = 0;
-                    //db 테이블 데이터 갱신
+                } else {
+                    int resId = getResources().getIdentifier(getid[i], "drawable", getPackageName());
+                    questimg.setImageResource(resId);
+                    questtitle.setText(gettitle[i]);
                 }
             }
         });
+
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+    }class selectDatabase extends AsyncTask<Void, Void, String> {
+
+        private String url1;
+        private ContentValues values1;
+        String result1; // 요청 결과를 저장할 변수.
+
+        public selectDatabase(String url, ContentValues contentValues) {
+            this.url1 = url;
+            this.values1 = contentValues;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
+            result1 = requestHttpURLConnection.request(url1, values1);
+            Log.e("결과", result1);// 해당 URL로 부터 결과물을 얻어온다.
+            return result1; // 여기서 당장 실행 X, onPostExcute에서 실행
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            //txtView.setText(s); // 파서 없이 전체 출력
+            doJSONParser(s); // 파서로 전체 출력
+        }
+    }
+
+    // 받아온 json 데이터를 파싱합니다..
+    public void doJSONParser(String string) {
+        try {
+            String result = "";
+            JSONObject jsonObject = new JSONObject(string);
+            JSONArray jsonArray = jsonObject.getJSONArray("webnautes");
+            list_cnt = jsonArray.length();
+            getid = new String[list_cnt];
+            gettitle = new String[list_cnt];
+
+            for (int i=0; i < jsonArray.length(); i++) {
+                JSONObject output = jsonArray.getJSONObject(i);
+                getid[i]  = output.getString("id");
+                gettitle[i] = output.getString("title");
+
+
+                Log.e("슈우우우우바아아알", getid[i]+gettitle[i]);
+
+            }
+            int resId = getResources().getIdentifier(getid[i], "drawable", getPackageName());
+            questimg.setImageResource(resId);
+            questtitle.setText(gettitle[i]);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
