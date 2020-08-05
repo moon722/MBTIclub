@@ -32,7 +32,7 @@
             android:ems="10"
             android:focusable="false"
             android:gravity="center"
-            android:text="글쓰기"
+            android:text="New Post"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="3dp"
-            android:hint="제목" />
+            android:hint="Title" />
 
         <EditText
             android:id="@+id/post_register_content"
@@ -80,7 +80,7 @@
             android:layout_marginEnd="3dp"
             android:layout_marginRight="3dp"
             android:layout_marginBottom="12dp"
-            android:hint="내용" />
+            android:hint="Contents" />
 
         <Button
             android:id="@+id/post_register_button"
@@ -98,7 +98,7 @@
             android:layout_marginRight="3dp"
             android:layout_marginBottom="12dp"
             android:background="#102938"
-            android:text="버튼"
+            android:text="Submit"
             android:textColor="@color/cardview_light_background"
             android:textSize="30dp" />
 

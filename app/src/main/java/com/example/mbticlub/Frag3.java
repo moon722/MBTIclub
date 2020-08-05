@@ -200,7 +200,7 @@ public class Frag3 extends Fragment{
     }
 
     public void add_item(BoardListViewAdapter board_adapter){
-        String[] board_items=new String[]{"전체게시판","자유게시판","여행","연애","게임","운동","영화","독서","소모임"};
+        String[] board_items=new String[]{"All","Anything","Travel","Relationship","Video game","Sports","Films","Books","Meet-up"};
         for(String item:board_items){
             board_adapter.addItem(item,R.drawable.ic_baseline_star_border_24);
         }

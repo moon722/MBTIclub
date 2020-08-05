@@ -66,9 +66,9 @@ public class Frag1 extends Fragment {
 
         adapter = new ListViewAdapter1();
 
-        adapter.addItem(R.drawable.fire,"핫 게시판");
-        adapter.addItem(R.drawable.ic_baseline_turned_in_24,"즐겨찾기");
-        adapter.addItem(R.drawable.sysinfo,"정보게시판");
+        adapter.addItem(R.drawable.fire,"HOT Board");
+        adapter.addItem(R.drawable.ic_baseline_turned_in_24,"Favorites");
+        adapter.addItem(R.drawable.sysinfo,"Tip Board");
         adapter.notifyDataSetChanged();
 
         listView = (ListView) view.findViewById(R.id.listView);

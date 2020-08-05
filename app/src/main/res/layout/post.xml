@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:text="추천게시판"
+            android:text="Suggestion Board"
             android:textColor="#000000"
             android:textSize="28dp"
             android:layout_weight="2">
@@ -62,7 +62,7 @@
                     android:id="@+id/Posttitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="오늘의 추천 영화!"
+                    android:text="Today's Movie!"
                     android:textColor="#000000"
                     android:textSize="30dp"
                     android:layout_margin="5dp">
@@ -76,9 +76,9 @@
                     android:layout_margin="20dp"
                     android:textColor="#000000"
                     android:textSize="20dp"
-                    android:text="2019년에 개봉한 봉준호 감독의 7번째 장편 영화. 상류층과 하류층, 두 가족의 만남을 다룬 대한민국의 블랙 코미디 가족 드라마 영화다.
+                    android:text="Bong Joon-ho's seventh feature film released in 2019. It is a Korean black comedy family drama about the meeting of two families, the upper and lower classes.
 
-역대 한국 영화 매출액 1위,[14] 역대 황금종려상 수상작 흥행 1위를 달성했으며 한국 영화사 최초로 칸 영화제 황금종려상, 골든 글로브 외국어 영화상, 2번째 영국 아카데미 외국어 영화상[15], 각본상 수상작, 비영어 영화 최초 미국배우조합 시상식(SAG Awards) 앙상블상, 그리고 제92회 아카데미 시상식 작품상[16], 감독상[17], 각본상[18], 국제 영화상 수상, 한국 최초 세자르 영화제 외국어영화상 수상의 위업을 달성한 기념비적인 작품이다.">
+The first ever Korean film to win the Palme d'Or award [14], the first Korean film to win the Palme d'Or at Cannes Film Festival, the Golden Globe Foreign Language Film Awards, the second British Academy Foreign Language Film Awards [15], the Screenplay Award, the first non-English Film Awards, and the 92nd Academy Awards [16], Best Director Award, Best Director Award.">
 
 
                 </TextView>

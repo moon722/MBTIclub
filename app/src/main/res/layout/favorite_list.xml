@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_margin="10dp"
-            android:text="즐겨찾기"
+            android:text="Favorites"
             android:textColor="#FFEB3B"
             android:textSize="28dp"
             android:layout_weight="7">

@@ -18,7 +18,7 @@
             android:gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="2"
-            android:text="추천게시판"
+            android:text="Suggestion Board"
             android:textColor="#000000"
             android:textSize="28dp">
 
@@ -40,7 +40,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
-                android:text="오늘의 추천 BEST"
+                android:text="Daily BEST for You"
                 android:textColor="#000000"
                 android:textSize="25dp">
 
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="150dp"
-                    android:text="오늘의 슥- 질문"
+                    android:text="Personal Research"
                     android:textColor="#000000"
                     android:textSize="25dp">
                 </TextView>
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/quest"
                     android:gravity="right"
-                    android:text="바로가기>>"
+                    android:text="go>>"
                     android:textSize="15dp">
 
 
@@ -93,7 +93,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="150dp"
-                android:text="오늘의 추천"
+                android:text="Daily Suggestion"
                 android:textColor="#000000"
                 android:textSize="25dp">
 

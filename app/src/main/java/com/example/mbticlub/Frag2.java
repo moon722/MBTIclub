@@ -49,13 +49,13 @@ public class Frag2 extends Fragment {
         listview.setAdapter(adapter);
 
         // 첫 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(container.getContext(),R.drawable.test1),"당신의 취미는?", "당신의 취미에 대해 알려주세요") ;
+        adapter.addItem(ContextCompat.getDrawable(container.getContext(),R.drawable.test1),"Liked this movie?", "ex Parasite") ;
         // 두 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.test2),
-                "이런 전시회는 어때요?", "취향의 공유") ;
+                "Liked this exhibition?", "ex Shooting- The Pulitzer") ;
         // 세 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.test3),
-                "당신이 좋아하는 음식은?", "당신이 먹고싶은 음식을 선택해주세요") ;
+                "Liked this spot?", "ex Haewundae") ;
         int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
         listview.measure(0, expandSpec);
         listview.getLayoutParams().height = listview.getMeasuredHeight();
@@ -65,9 +65,9 @@ public class Frag2 extends Fragment {
         gridAdapter = new GridAdapter();
 
 
-        gridAdapter.addItem(new GridItem("뮤지컬",R.drawable.poster));
-        gridAdapter.addItem(new GridItem("영화",R.drawable.poster2));
-        gridAdapter.addItem(new GridItem("조커",R.drawable.poster3));
+        gridAdapter.addItem(new GridItem("Musical",R.drawable.poster));
+        gridAdapter.addItem(new GridItem("Movie",R.drawable.poster2));
+        gridAdapter.addItem(new GridItem("Movie",R.drawable.poster3));
         gridView.setAdapter(gridAdapter);
 
         gridView.measure(0, expandSpec);
