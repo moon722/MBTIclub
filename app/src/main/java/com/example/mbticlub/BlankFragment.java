@@ -77,20 +77,17 @@ public class BlankFragment extends Fragment {
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.memolist_type, board_data);
         board_list.setAdapter(adapter);
 
-        board_data.add("자유게시판\n 답글 : 안녕하세요");
-        board_data.add("친구요청(1)\n 닉네임 : 오픈클러스터");
-        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
-        board_data.add("코인 알림\n뉴스레터 구독을 위한 코인이 부족합니다!");
-        board_data.add("자유게시판\n 답글 : 안녕하세요");
-        board_data.add("친구요청(1)\n 닉네임 : 오픈클러스터");
-        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
-        board_data.add("코인 알림\n뉴스레터 구독을 위한 코인이 부족합니다!");
-        board_data.add("자유게시판\n 답글 : 안녕하세요");
-        board_data.add("친구요청(1)\n 닉네임 : 오픈클러스터");
-        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
-        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
-        board_data.add("새로운 대화가 매칭되었습니다\n닉네임 : 곰돌이푸 (ENTP)");
-        board_data.add("코인 알림\n뉴스레터 구독을 위한 코인이 부족합니다!");
+        board_data.add("[Report Alert]\nYour report is under review");
+        board_data.add("[Comments /Anything]\nNick : Thank you:)");
+        board_data.add("[Friend Request]\nName : Open Cluster (INTJ)");
+        board_data.add("!New match arrived for you!\nName : MrPark (ENTP)");
+        board_data.add("[Coin Alert]\nRunning our of coins for newletter!");
+        board_data.add("[New Friend]\nLEEG accepted your friend request");
+        board_data.add("[Comments /Travel]\nWhale : Love this spot!!");
+        board_data.add("[Coin Alert]\nRunning our of coins for newletter!");
+        board_data.add("[New Friend]\nBTSWORLD accepted your friend request");
+        board_data.add("[New Friend]\nMbtiAddict accepted your friend request");
+        board_data.add("[Welcome Gift]\nYou earned 20 coins!!");
 
         adapter.notifyDataSetChanged();//이 상태를 저장
 

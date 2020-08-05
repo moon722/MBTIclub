@@ -15,7 +15,7 @@ public class infoList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_list);
 
-        String[] board_items=new String[]{"All","Anything","Travel","Relationship","Video game","Sports","Films","Books","Meet-up"};
+        String[] board_items=new String[]{"MBTI Relationship Matching","MBTI vs 16Personality","How to get more precise MBTI test cheaply","How to benefit from this app","World CEO's MBTI","MBTI study tips for getting A+","What if my Boss is ENTJ?!"};
         for(String item:board_items){
             info_board.addItem(R.drawable.ic_baseline_star_border_24,item);
         }

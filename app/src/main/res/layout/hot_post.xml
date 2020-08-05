@@ -32,7 +32,7 @@
             android:gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="2"
-            android:text="HOT Boards"
+            android:text="HOT Board"
             android:textColor="#E91E63"
             android:textSize="28dp">
 

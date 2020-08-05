@@ -103,8 +103,8 @@ public class BlankFragment2 extends Fragment {
     }
 
     public void add_item(ChatAdapter chatlist_adapter) {
-        String[] chat_user = new String[]{"곰돌이푸","인주"};
-        String[] chat_items = new String[]{"오늘도 좋은 하루 보내", "나는 코딩이 좋아"};
+        String[] chat_user = new String[]{"MrPark","Injoo"};
+        String[] chat_items = new String[]{"Have a great one!", "I love programming!"};
         for(int i = 0; i < 2; i++){
             chatlist_adapter.addItem(chat_user[i],R.drawable.ic_baseline_person_24,chat_items[i]);
         }
