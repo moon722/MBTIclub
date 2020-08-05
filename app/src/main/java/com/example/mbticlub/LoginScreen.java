@@ -125,7 +125,8 @@ public class LoginScreen extends AppCompatActivity {
         //사용자가 startActivityForResult()로 호출된 액티비티 작업 다 끝내면 onActivityResult()실행된다.
 
         //로그인 하면 바로 버튼 2개 화면으로 넘어가기
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this); //기존에 로그인 된 사용자 객체 얻기
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        /*//기존에 로그인 된 사용자 객체 얻기
         if(account!=null){
             userAccount = account;
             Intent intent=new Intent(LoginScreen.this,MainActivity.class);      //null이 아닌 경우 이 사용자는 이미 구글 로그인 된 상태, null 일 경우 로그인 한 적 없음
@@ -133,7 +134,7 @@ public class LoginScreen extends AppCompatActivity {
             profile();
             finish();
 
-        }
+        }*/
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override

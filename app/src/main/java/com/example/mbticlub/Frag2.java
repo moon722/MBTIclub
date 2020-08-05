@@ -1,6 +1,7 @@
 package com.example.mbticlub;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +27,9 @@ public class Frag2 extends Fragment {
     private View view;
     GridView gridView;
     GridAdapter gridAdapter;
-
+    TextView quest;
+    ListView listview;
+    ListViewAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,14 +38,14 @@ public class Frag2 extends Fragment {
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getFragmentManager());
         init(fragmentAdapter);
 
-        ListView listview;
-        ListViewAdapter adapter;
-
         // Adapter 생성
         adapter = new ListViewAdapter();
 
         // 리스트뷰 참조 및 Adapter달기
         listview = (ListView) view.findViewById(R.id.listview1);
+        gridView = (GridView) view.findViewById(R.id.gridview);
+        quest = (TextView)view.findViewById(R.id.quest);
+
         listview.setAdapter(adapter);
 
         // 첫 번째 아이템 추가.
@@ -56,7 +60,8 @@ public class Frag2 extends Fragment {
         listview.measure(0, expandSpec);
         listview.getLayoutParams().height = listview.getMeasuredHeight();
 
-        gridView = (GridView) view.findViewById(R.id.gridview);
+
+
         gridAdapter = new GridAdapter();
 
 
@@ -67,6 +72,16 @@ public class Frag2 extends Fragment {
 
         gridView.measure(0, expandSpec);
         gridView.getLayoutParams().height = gridView.getMeasuredHeight();
+
+        quest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), QuestionActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         return view;
     }
