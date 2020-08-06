@@ -92,7 +92,7 @@ public class BlankFragment2 extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent btn1_intent = new Intent(getActivity(), FragArticle.class);
+                Intent btn1_intent = new Intent(getActivity(), Matching.class);
                 startActivity(btn1_intent);
             }
         });

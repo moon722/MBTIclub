@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Matching">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/izviewPager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="112dp">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="11dp"
+        tools:layout_editor_absoluteY="41dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="304dp"
+        android:layout_height="87dp"
+        app:srcCompat="@android:drawable/progress_horizontal"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="584dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
