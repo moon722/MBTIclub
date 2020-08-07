@@ -35,37 +35,6 @@
             android:textSize="13dp"
             android:textColor="#666666"
             android:layout_weight="1" />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="right"
-            android:layout_margin="5dp">
-            <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="#00000000"
-                android:src="@drawable/btn_share"
-                android:scaleType="centerCrop"
-                android:layout_margin="10dp">
-
-
-            </ImageButton>
-            <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="#00000000"
-                android:src="@drawable/btn_bookmark"
-                android:scaleType="centerCrop"
-                android:layout_margin="10dp">
-
-
-            </ImageButton>
-
-
-
-
-
-        </LinearLayout>
+        
     </LinearLayout>
 </LinearLayout>

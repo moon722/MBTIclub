@@ -40,4 +40,5 @@ dependencies {
 
     implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation group: 'com.kakao.sdk', name: 'kakaolink', version: project.KAKAO_SDK_VERSION
 }

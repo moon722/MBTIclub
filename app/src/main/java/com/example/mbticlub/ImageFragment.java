@@ -38,8 +38,8 @@ public class ImageFragment extends Fragment {
     }
     public void updateDetail(Bundle args) {
         Intent intent = new Intent(getActivity(), PostActivity.class); //post액티비티 클래스로 보낼 intent객체 생성
-        intent.putExtra("img",args.getInt("imgRes"));//객체에 보내야할 데이터 intent객체에 put()
-
+        intent.putExtra("imgint",args.getInt("imgRes"));//객체에 보내야할 데이터 intent객체에 put()
+        intent.putExtra("imgstring",args.getString("imgRes"));
         startActivity(intent);//intent를 가지고 post로 전달하면서 post액티비티 실행
         Log.e("intent 이벤트", getString(args.getInt("imgRes")));
 
