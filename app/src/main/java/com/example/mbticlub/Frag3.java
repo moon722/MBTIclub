@@ -17,8 +17,6 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +87,7 @@ public class Frag3 extends Fragment{
         final Context context = container.getContext();
 
 
-        final BoardListViewAdapter board_adapter=new BoardListViewAdapter(Frag3.this);
+        final MatchingBoardListViewAdapter board_adapter=new MatchingBoardListViewAdapter(Frag3.this);
         board_listview = view.findViewById(R.id.board_listview);
         board_listview.setAdapter(board_adapter);
         add_item(board_adapter);
@@ -199,7 +197,7 @@ public class Frag3 extends Fragment{
         return view;
     }
 
-    public void add_item(BoardListViewAdapter board_adapter){
+    public void add_item(MatchingBoardListViewAdapter board_adapter){
         String[] board_items=new String[]{"All","Anything","Travel","Relationship","Video game","Sports","Films","Books","Meet-up"};
         for(String item:board_items){
             board_adapter.addItem(item,R.drawable.ic_baseline_star_border_24);

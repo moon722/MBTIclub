@@ -9,10 +9,12 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/izviewPager"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="112dp">
+        android:layout_width="812dp"
+        android:layout_height="292dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
     </androidx.viewpager.widget.ViewPager>
 
@@ -21,15 +23,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textSize="20dp"
         tools:layout_editor_absoluteX="11dp"
         tools:layout_editor_absoluteY="41dp" />
 
+    <ListView
+        android:layout_width="686dp"
+        android:layout_height="380dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/izviewPager" />
+
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="304dp"
-        android:layout_height="87dp"
-        app:srcCompat="@android:drawable/progress_horizontal"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="584dp" />
+        android:layout_width="705dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/progress_horizontal" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
