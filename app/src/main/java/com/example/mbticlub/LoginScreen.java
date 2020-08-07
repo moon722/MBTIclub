@@ -81,6 +81,7 @@ public class LoginScreen extends AppCompatActivity {
                                 intent.putExtra("user_password", user_password);
 
                                 PreferenceManager.setString(context,"user_id",user_id);
+                                PreferenceManager.setString(context,"user_name",jsonObject.getString("user_name"));
                                 /*
                                 디비에서 갖고와서 set
                                  */
