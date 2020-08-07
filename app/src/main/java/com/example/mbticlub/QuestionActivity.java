@@ -37,8 +37,8 @@ import java.util.HashMap;
 
 public class QuestionActivity extends AppCompatActivity {
     ImageView questimg;
-    TextView questtitle;
-    ImageButton questyes, questno;
+    TextView questtitle, questcontent;
+    ImageButton questyes, questno, questnorm;
     ImageButton backbtn;
 
 
@@ -49,15 +49,11 @@ public class QuestionActivity extends AppCompatActivity {
     private static final String TAG_TITLE = "quest_title";
     private static final String TAG_OX ="quest_ox";
     int i = 0;
-    private TextView mTextViewResult;
-    ArrayList<HashMap<String, String>> mArrayList;
-    ListView mlistView;
-    String jsonString;
-    ArrayList<Question> questionArrayList;
+
     int list_cnt;
     String [] getid;
     String [] gettitle;
-
+    String [] getcontent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,15 +62,11 @@ public class QuestionActivity extends AppCompatActivity {
 
         questimg = (ImageView) findViewById(R.id.questimg);
         questtitle = (TextView) findViewById(R.id.questtitle);
+        questcontent = (TextView) findViewById(R.id.questcontent);
         questyes = (ImageButton) findViewById(R.id.questyes);
+        questnorm = (ImageButton) findViewById(R.id.questnorm);
         questno = (ImageButton) findViewById(R.id.questno);
         backbtn = (ImageButton) findViewById(R.id.ListBackBtn);
-//        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
-//        mlistView = (ListView) findViewById(R.id.listView_main_list);
-//        mArrayList = new ArrayList<>();
-
-
-
 
 
         String url = "http://mbtiy.dothome.co.kr/quest2.php";
@@ -82,9 +74,21 @@ public class QuestionActivity extends AppCompatActivity {
         selectDatabase.execute();// AsyncTask는 .excute()로 실행된다.
 
 
+        questnorm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i++;
+                if (i >= getid.length) {
+                    onBackPressed();
+                } else {
+                    int resId = getResources().getIdentifier(getid[i], "drawable", getPackageName());
+                    questimg.setImageResource(resId);
+                    questtitle.setText(gettitle[i]);
+                    questcontent.setText(getcontent[i]);
+                }
 
-
-
+            }
+        });
 
         questyes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +100,7 @@ public class QuestionActivity extends AppCompatActivity {
                     int resId = getResources().getIdentifier(getid[i], "drawable", getPackageName());
                     questimg.setImageResource(resId);
                     questtitle.setText(gettitle[i]);
+                    questcontent.setText(getcontent[i]);
                 }
 
             }
@@ -110,6 +115,7 @@ public class QuestionActivity extends AppCompatActivity {
                     int resId = getResources().getIdentifier(getid[i], "drawable", getPackageName());
                     questimg.setImageResource(resId);
                     questtitle.setText(gettitle[i]);
+                    questcontent.setText(getcontent[i]);
                 }
             }
         });
@@ -157,19 +163,21 @@ public class QuestionActivity extends AppCompatActivity {
             list_cnt = jsonArray.length();
             getid = new String[list_cnt];
             gettitle = new String[list_cnt];
-
+            getcontent = new String[list_cnt];
             for (int i=0; i < jsonArray.length(); i++) {
                 JSONObject output = jsonArray.getJSONObject(i);
                 getid[i]  = output.getString("id");
                 gettitle[i] = output.getString("title");
+                getcontent[i] = output.getString("content");
 
-
-                Log.e("슈우우우우바아아알", getid[i]+gettitle[i]);
+                Log.e("슈우우우우바아아알", getid[i]+gettitle[i]+getcontent[i]);
 
             }
             int resId = getResources().getIdentifier(getid[i], "drawable", getPackageName());
             questimg.setImageResource(resId);
             questtitle.setText(gettitle[i]);
+            questcontent.setText(getcontent[i]);
+
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class ImageFragment extends Fragment {
+public class ImageFragment1 extends Fragment {
 
     @Nullable
     @Override
@@ -29,7 +29,7 @@ public class ImageFragment extends Fragment {
             @Override
             public void onClick(View v) {//클릭 할 때마다 intent(updateDetail()실행) 전달
                 Bundle args = getArguments();
-                Log.e("asdf",getString(args.getInt("imgRes")));
+                Log.e("title",getString(args.getInt("imgRes")));
                 updateDetail(args);
 
             }
@@ -37,9 +37,9 @@ public class ImageFragment extends Fragment {
         return view;
     }
     public void updateDetail(Bundle args) {
-        Intent intent = new Intent(getActivity(), PostActivity.class); //post액티비티 클래스로 보낼 intent객체 생성
-        intent.putExtra("imgint",args.getInt("imgRes"));//객체에 보내야할 데이터 intent객체에 put()
-        intent.putExtra("imgstring",args.getString("imgRes"));
+        Intent intent = new Intent(getActivity(), frag1_comment.class); //post액티비티 클래스로 보낼 intent객체 생성
+        intent.putExtra("img",args.getInt("imgRes"));//객체에 보내야할 데이터 intent객체에 put()
+
         startActivity(intent);//intent를 가지고 post로 전달하면서 post액티비티 실행
         Log.e("intent 이벤트", getString(args.getInt("imgRes")));
 

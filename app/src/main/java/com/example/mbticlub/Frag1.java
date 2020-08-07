@@ -109,11 +109,11 @@ public class Frag1 extends Fragment {
 
 
         for(int i = 0; i<imageList.size(); i++){
-            ImageFragment imageFragment = new ImageFragment();
+            ImageFragment1 imageFragment1 = new ImageFragment1();
             Bundle bundle = new Bundle();
             bundle.putInt("imgRes", imageList.get(i));
-            imageFragment.setArguments(bundle);
-            fragmentAdapter.addItem(imageFragment);
+            imageFragment1.setArguments(bundle);
+            fragmentAdapter.addItem(imageFragment1);
         }
         fragmentAdapter.notifyDataSetChanged();
 

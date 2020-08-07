@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -49,16 +50,25 @@ public class Frag2 extends Fragment {
         listview.setAdapter(adapter);
 
         // 첫 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(container.getContext(),R.drawable.test1),"Liked this movie?", "ex Parasite") ;
+        adapter.addItem(ContextCompat.getDrawable(container.getContext(),R.drawable.movie1),"Liked this movie?", "Parasite") ;
         // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.test2),
-                "Liked this exhibition?", "ex Shooting- The Pulitzer") ;
+        adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.exhibition1),
+                "Liked this exhibition?", "Hands on the Table") ;
         // 세 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.test3),
-                "Liked this spot?", "ex Haewundae") ;
+        adapter.addItem(ContextCompat.getDrawable(container.getContext(), R.drawable.game1),
+                "Liked this game?", "BattleGround") ;
         int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
         listview.measure(0, expandSpec);
         listview.getLayoutParams().height = listview.getMeasuredHeight();
+
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), QuestionActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -81,7 +91,12 @@ public class Frag2 extends Fragment {
 
             }
         });
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            }
+        });
 
         return view;
     }
