@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mbticlub">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
         <activity android:name=".LoginScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,16 +24,15 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".PostActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="@string/kakao_scheme"
-                    android:host="@string/kakaolink_host"/>
+                    android:host="@string/kakaolink_host"
+                    android:scheme="@string/kakao_scheme" />
             </intent-filter>
-
-
         </activity>
         <activity android:name=".infoList" />
         <activity android:name=".Favorite_list" />
@@ -45,12 +45,12 @@
         <activity android:name=".FragSubscribe" />
         <activity android:name=".FragMyInfo" />
         <activity android:name=".FragSurvey" />
-        <activity android:name=".frag1_comment"/>
+        <activity android:name=".frag1_comment" />
+        <activity android:name=".Matching" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
