@@ -37,18 +37,17 @@ public static friend_frag1 newInstance() {
         //super.onCreate(savedInstanceState);
 
         ListView fr_list1 = (ListView) view.findViewById(R.id.friend_list1);
-        final ChatAdapter adapter1 = new ChatAdapter();
+        final ListViewAdapter_fourviewer adapter1 = new ListViewAdapter_fourviewer();
         fr_list1.setAdapter(adapter1);
         add_item(adapter1);
 
         return view;
     }
 
-    public void add_item(ChatAdapter chatlist_adapter) {
-        String[] chat_user = new String[]{"후후히히","민찬"};
-        String[] chat_items = new String[]{"오늘도 좋은 하루 보내", "나는 코딩이 좋아"};
+    public void add_item(ListViewAdapter_fourviewer chatlist_adapter) {
+        String[] chat_user = new String[]{"injoo","minchan"};
         for(int i = 0; i < 2; i++){
-            chatlist_adapter.addItem(chat_user[i],R.drawable.ic_baseline_person_24,chat_items[i]);
+            chatlist_adapter.addItem(R.drawable.ic_baseline_person_24,chat_user[i]);
         }
 
         chatlist_adapter.notifyDataSetChanged();

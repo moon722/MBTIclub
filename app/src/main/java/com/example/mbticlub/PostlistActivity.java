@@ -227,7 +227,7 @@ public class PostlistActivity extends AppCompatActivity {
                     }
 
                 } catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "no post", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 

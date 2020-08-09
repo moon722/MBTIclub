@@ -32,18 +32,17 @@ public static friend_frag newInstance() {
         View view = inflater.inflate(R.layout.friend_frag, container, false);
         //super.onCreate(savedInstanceState);
         ListView fr_list = (ListView) view.findViewById(R.id.friend_list);
-        final ChatAdapter adapter = new ChatAdapter();
+        final ListViewAdapter1 adapter = new ListViewAdapter1();
         fr_list.setAdapter(adapter);
         add_item(adapter);
 
         return view;
     }
 
-    public void add_item(ChatAdapter chatlist_adapter) {
-        String[] chat_user = new String[]{"후후히히","민찬","인주","태하","혜림","상진"};
-        String[] chat_items = new String[]{"오늘도 좋은 하루 보내", "왜 이거 안돼 개빡쳐","나는 코딩이 좋아","저는 코딩빼고 다 할 수 있습니다.","안드로이드는 저에게!","인주버스가 이리 편한지 몰랐어요"};
+    public void add_item(ListViewAdapter1 chatlist_adapter) {
+        String[] chat_user = new String[]{"minchan","injoo","tahea","heoyrim","sanggin"};
         for(int i = 0; i < chat_user.length; i++){
-            chatlist_adapter.addItem(chat_user[i],R.drawable.ic_baseline_person_24,chat_items[i]);
+            chatlist_adapter.addItem(R.drawable.ic_baseline_person_24,chat_user[i]);
         }
 
         chatlist_adapter.notifyDataSetChanged();

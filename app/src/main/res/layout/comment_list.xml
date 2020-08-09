@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textSize="10dp"
+            android:textSize="22dp"
             android:id="@+id/comment_list_nam">
 
         </TextView>
@@ -38,8 +38,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:textSize="15dp"
+            android:layout_weight="1"
+            android:textSize="20dp"
             android:id="@+id/comment_list_con">
 
         </TextView>

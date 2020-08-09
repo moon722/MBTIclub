@@ -40,7 +40,7 @@ public class Frag1 extends Fragment {
 
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getFragmentManager());
 
-        this.initializeData(fragmentAdapter);
+        initializeData(fragmentAdapter);
 
         return view;
     }
@@ -51,7 +51,7 @@ public class Frag1 extends Fragment {
        // ViewPager vp = (ViewPager) view.findViewById(R.id.ImageMain1);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getChildFragmentManager());
 
-        this.initializeData(fragmentAdapter);
+        initializeData(fragmentAdapter);
     }
 
 
@@ -112,6 +112,7 @@ public class Frag1 extends Fragment {
             ImageFragment1 imageFragment1 = new ImageFragment1();
             Bundle bundle = new Bundle();
             bundle.putInt("imgRes", imageList.get(i));
+            bundle.putString("ValRes", Integer.toString(i));
             imageFragment1.setArguments(bundle);
             fragmentAdapter.addItem(imageFragment1);
         }

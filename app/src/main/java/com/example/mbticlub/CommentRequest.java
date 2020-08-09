@@ -8,19 +8,19 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommentRegister extends StringRequest {
-    //서버 URL설정(PHP 파일 연동)
-    final static private String URL = "http://mbtiy.dothome.co.kr/CommentRe.php";
+public class CommentRequest extends StringRequest {
+
+    final static private String URL = "http://mbtiy.dothome.co.kr/CommentReq.php";
+
     private Map<String, String> map;
 
-    public CommentRegister(String user_id, String user_name, String user_comment, String title, Response.Listener<String> listener) {
+
+    public CommentRequest(String title, Response.Listener<String> listener) {
         super(Request.Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("user_id",user_id);
-        map.put("user_name",user_name);
-        map.put("user_comment",user_comment);
-        map.put("title",title);
+        map.put("title", title);
+
 
     }
 
