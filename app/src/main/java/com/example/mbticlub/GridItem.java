@@ -2,12 +2,8 @@ package com.example.mbticlub;
 public class GridItem {
 
     private String name;
-    private int image;
+    private String image;
 
-    public GridItem(String name, int image) {
-        this.name = name;
-        this.image = image;
-    }
 
     public String getName() {
         return name;
@@ -17,11 +13,12 @@ public class GridItem {
         this.name = name;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
+
 }

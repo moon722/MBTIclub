@@ -52,7 +52,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="accept"
                 android:textColor="@color/whiteDefault"
-                android:background="@color/ic_launcher_send_background">
+                android:background="#FF2F86DC">
 
             </Button>
 

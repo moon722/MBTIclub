@@ -11,7 +11,8 @@ import androidx.annotation.Nullable;
 import com.example.mbticlub.R;
 
 public class GridViewer extends LinearLayout {
-
+    GridItem gridItem;
+    Context context;
     TextView textView;
     ImageView imageView;
     public GridViewer(Context context) {
@@ -35,7 +36,8 @@ public class GridViewer extends LinearLayout {
     }
 
     public void setItem(GridItem singerItem){
+
         textView.setText(singerItem.getName());
-        imageView.setImageResource(singerItem.getImage());
+        imageView.setImageResource(context.getResources().getIdentifier(gridItem.getImage(),"drawable",context.getPackageName()));
     }
 }

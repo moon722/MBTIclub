@@ -1,13 +1,16 @@
 package com.example.mbticlub;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -22,9 +25,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 
 import com.kakao.kakaolink.v2.KakaoLinkResponse;
 import com.kakao.kakaolink.v2.KakaoLinkService;
@@ -37,17 +37,10 @@ import com.kakao.network.ErrorResult;
 import com.kakao.network.callback.ResponseCallback;
 import com.kakao.util.helper.log.Logger;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,15 +52,14 @@ public class PostActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE_CODE = 1;
     boolean permissionCheck = false;
     String myResult;
+    int list_cnt;
+    Context context;
+    int bookmark = 0;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.e("포스트도착", "포스트");
         setContentView(R.layout.post);
         intent = getIntent();
-        Log.e("포스트 도착", getString(intent.getIntExtra("imgint", 1)));
-
 
 
         backbtn = (ImageButton) findViewById(R.id.ListBackBtn);
@@ -76,12 +68,12 @@ public class PostActivity extends AppCompatActivity {
         content = (TextView) findViewById(R.id.Postcontent);
         btn_share = (ImageButton) findViewById(R.id.btn_share);
         btn_bookmark = (ImageButton) findViewById(R.id.btn_bookmark);
+        imgview.setImageResource(getApplicationContext().getResources().getIdentifier(intent.getStringExtra("imgint"),"drawable",getApplicationContext().getPackageName()));
 
-        imgview.setImageResource(intent.getIntExtra("imgint", 1));
 
-        title.setText("asdf");//이미지 리소스에 대한 title, content 데이터 db에서 받아오기
-        content.setText("asdf");
-
+        String url = "http://mbtiy.dothome.co.kr/recommand.php?recom_id="+intent.getStringExtra("imgint");
+        selectDatabase selectDatabase = new PostActivity.selectDatabase(url, null);
+        selectDatabase.execute();// AsyncTask는 .excute()로 실행된다.
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,125 +85,86 @@ public class PostActivity extends AppCompatActivity {
         btn_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 kakaolink();
-
-
-//                Bitmap image =BitmapFactory.decodeResource(getResources(),intent.getIntExtra("img",1 ));
-//                String imgBitmapPath= MediaStore.Images.Media.insertImage(getContentResolver(),image,"title",null);
-//                Uri bmpUri=Uri.parse(imgBitmapPath);
-//                Intent shareIntent = new Intent();
-//                shareIntent.setAction(Intent.ACTION_SEND);
-//
-//                shareIntent.putExtra(Intent.EXTRA_TEXT, "asdfasdfasdf"  );
-//                shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-//                shareIntent.setType("image/*");
-//                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                startActivity(Intent.createChooser(shareIntent, "Share Opportunity"));
-
-
-//                Intent share = new Intent(Intent.ACTION_SEND);
-//                share.setType("image/*");
-//
-//                /**This is the image to share**/
-//                Bitmap image =BitmapFactory.decodeResource(getResources(),intent.getIntExtra("img",1 ));
-//
-//                ContentValues values = new ContentValues();
-//                values.put(MediaStore.Images.Media.TITLE, "title");
-//                values.put(MediaStore.Images.Media.MIME_TYPE, "image/*");
-//                Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//                        values);
-//                OutputStream outstream;
-//                try {
-//                    outstream = getContentResolver().openOutputStream(uri);
-//                    image.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
-//                    outstream.close();
-//                } catch (Exception e) {
-//                    System.err.println(e.toString());
-//                }
-//
-//                share.putExtra(Intent.EXTRA_STREAM, uri);
-//                share.putExtra(Intent.EXTRA_TEXT, "YOUR_BODY_TEXT_HERE");
-//                startActivity(Intent.createChooser(share, "Share Image"));
-
-
-//                Intent Sharing_intent = new Intent(Intent.ACTION_SEND);
-//                Sharing_intent.setType("text/plain");
-//                String Test_Message = "MBTIY 정보";
-//                //Uri uri = Uri.parse("android.resource://com.example.mbticlub/"+getString(intent.getIntExtra("img",1 )));
-//                //Log.e("URIIII", uri.toString());
-//                Sharing_intent.putExtra(Intent.EXTRA_TEXT, Test_Message);
-//                //Sharing_intent.putExtra(Intent.EXTRA_STREAM, uri);
-//
-//                Intent Sharing = Intent.createChooser(Sharing_intent, "공유하기");
-//                startActivity(Sharing);
-
-
-//                Bitmap image = BitmapFactory.decodeResource(getResources(), intent.getIntExtra("img", 1));
-//                String imgBitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(), image, "title", null);
-//                Uri imgBitmapUri = Uri.parse(imgBitmapPath);
-//                String shareText = "Share image and text";
-//                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//                shareIntent.setType("*/*");
-//                shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
-//                shareIntent.putExtra(Intent.EXTRA_TEXT, imgBitmapUri);
-//
-//                Intent Sharing = Intent.createChooser(shareIntent, "공유하기");
-//                startActivity(Sharing);//이미지 전달 제대로 되는것
-
             }
         });
 
-
-
-    }public void HttpPostData(){
-        try{
-            URL url = new URL("http://mbtiy.dothome.co.kr/quest2.php");
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
-            http.setDefaultUseCaches(false);
-            http.setDoInput(true);                         // 서버에서 읽기 모드 지정
-            http.setDoOutput(true);                       // 서버로 쓰기 모드 지정
-            http.setRequestMethod("POST");
-            http.setRequestProperty("content-type", "application/x-www-form-urlencoded");
-
-            StringBuffer buffer = new StringBuffer();
-            buffer.append("recom_id").append("=").append(getString(intent.getIntExtra("imgint", 1)));
-            OutputStreamWriter outStream = new OutputStreamWriter(http.getOutputStream(), "EUC-KR");
-            PrintWriter writer = new PrintWriter(outStream);
-            writer.write(buffer.toString());
-            writer.flush();
-
-            InputStreamReader tmp = new InputStreamReader(http.getInputStream(), "EUC-KR");
-            BufferedReader reader = new BufferedReader(tmp);
-            StringBuilder builder = new StringBuilder();
-            String str;
-            while ((str = reader.readLine()) != null) {       // 서버에서 라인단위로 보내줄 것이므로 라인단위로 읽는다
-                builder.append(str + "\n");                     // View에 표시하기 위해 라인 구분자 추가
+        btn_bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bookmark == 0){
+                    btn_bookmark.setImageResource(R.drawable.ic_baseline_bookmark_24);
+                    bookmark = 1;
+                    Toast.makeText(getApplicationContext(), "Bookmarked", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    btn_bookmark.setImageResource(R.drawable.ic_bookmark_border_black_24dp);
+                    bookmark = 0;
+                    Toast.makeText(getApplicationContext(), "Bookmark released", Toast.LENGTH_SHORT).show();
+                }
             }
-            myResult = builder.toString();
-        }catch(Exception e){
-            e.printStackTrace();
+        });
+
+    }class selectDatabase extends AsyncTask<Void, Void, String> {
+
+        private String url1;
+        private ContentValues values1;
+        String result1; // 요청 결과를 저장할 변수.
+
+        public selectDatabase(String url, ContentValues contentValues) {
+            this.url1 = url;
+            this.values1 = contentValues;
         }
 
+        @Override
+        protected String doInBackground(Void... params) {
+            RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
+            result1 = requestHttpURLConnection.request(url1, values1);
+            return result1; // 여기서 당장 실행 X, onPostExcute에서 실행
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            //txtView.setText(s); // 파서 없이 전체 출력
+            doJSONParser(s); // 파서로 전체 출력
+        }
+    }
+
+    // 받아온 json 데이터를 파싱합니다..
+    public void doJSONParser(String string) {
+        try {
+            String result = "";
+            JSONObject jsonObject = new JSONObject(string);
+            JSONArray jsonArray = jsonObject.getJSONArray("webnautes");
+            list_cnt = jsonArray.length();
+
+            for (int i=0; i < jsonArray.length(); i++) {
+                JSONObject output = jsonArray.getJSONObject(i);
+                title.setText(output.getString("title"));
+                content.setText(output.getString("content"));
+
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void kakaolink() {
-        String uri = Uri.parse("android.resource://"+ R.class.getPackage().getName()+"/" + getString(intent.getIntExtra("imgint", 1))).toString();
-        Log.e("슝우우우우바라아알", uri);
-        Log.e("슝우우우우바라아알", title.toString());
         FeedTemplate params = FeedTemplate
-                .newBuilder(ContentObject.newBuilder("MBTIY 오늘의 추천!",
-                        "http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg",
-                        LinkObject.newBuilder().setWebUrl("https://developers.kakao.com")
-                                .setMobileWebUrl("https://developers.kakao.com").build())
-                        .setDescrption(title.getText().toString())
+                .newBuilder(ContentObject.newBuilder("Daily Suggestion for your MBTI type!",
+                        "https://postfiles.pstatic.net/MjAyMDA4MDhfMTgw/MDAxNTk2ODYyNTU4NDg3.LxlLrxotw8pRqOPWS_0YN36r57sKvK7TyPEbWG8SHjsg.OKHamTs1dpJ_CV8CM0F0cRpxcGJDpabIXJq-Wy_PPKAg.PNG.heryms/logo.png?type=w773",
+                        LinkObject.newBuilder().setWebUrl("market://details?id=com.example.mbticlub")
+                                .setMobileWebUrl("market://details?id=com.example.mbticlub").build())
+                        .setDescrption("You can set it up and check it!")
                         .build())
-                .setSocial(SocialObject.newBuilder().setLikeCount(10).setCommentCount(20)
+                .setSocial(SocialObject.newBuilder().setLikeCount(10)
                         .setSharedCount(30).setViewCount(40).build())
-                .addButton(new ButtonObject("웹에서 보기", LinkObject.newBuilder().setWebUrl("'https://developers.kakao.com").setMobileWebUrl("'https://developers.kakao.com").build()))
-                .addButton(new ButtonObject("앱에서 보기", LinkObject.newBuilder()
-                        .setWebUrl("'https://developers.kakao.com")
-                        .setMobileWebUrl("'https://developers.kakao.com")
+                .addButton(new ButtonObject("View on the Web", LinkObject.newBuilder().setWebUrl("'market://details?id=com.example.mbticlub").setMobileWebUrl("'market://details?id=com.example.mbticlub").build()))
+                .addButton(new ButtonObject("View on the App", LinkObject.newBuilder()
+                        .setWebUrl("'market://details?id=com.example.mbticlub")
+                        .setMobileWebUrl("'market://details?id=com.example.mbticlub")
                         .setAndroidExecutionParams("key1=value1")
                         .setIosExecutionParams("key1=value1")
                         .build()))
