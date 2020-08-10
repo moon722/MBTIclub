@@ -72,6 +72,10 @@ public class Frag5 extends Fragment {
                         Intent my_survey = new Intent(getActivity(),FragSurvey.class);
                         getActivity().startActivity(my_survey);
                         break;
+                    case 4:
+                        Intent logout = new Intent(getActivity(),LoginScreen.class);
+                        getActivity().startActivity(logout);
+                        break;
                 }
             }
         });

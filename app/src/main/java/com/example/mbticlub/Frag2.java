@@ -2,8 +2,11 @@ package com.example.mbticlub;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +26,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.kakao.util.helper.Utility;
+
+import java.security.MessageDigest;
+import java.security.Signature;
 import java.util.ArrayList;
 
 public class Frag2 extends Fragment {
@@ -105,6 +112,8 @@ public class Frag2 extends Fragment {
         });
 
         return view;
+
+
     }
 
     @Override
@@ -198,9 +207,6 @@ public class Frag2 extends Fragment {
         gridView.setLayoutParams(params);
 
     }
-
-
-
 
 
 
