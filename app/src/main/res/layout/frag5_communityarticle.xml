@@ -35,7 +35,7 @@
         android:id="@+id/person_communityarticle_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#A74549">
+        android:background="#516AAF">
     </ListView>
 
 
