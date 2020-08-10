@@ -14,20 +14,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/shapeLayout"
-                android:layout_margin="5dp">
+                android:id="@+id/shapeLayout">
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/listIcon"
-                    android:src="@drawable/fire"/>
+                    android:src="@drawable/fire"
+                    android:layout_margin="5dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
+                        android:gravity="center|left"
                         android:id="@+id/textList"
                         android:text="Hot Boards"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"/>
             </LinearLayout>
 
 
