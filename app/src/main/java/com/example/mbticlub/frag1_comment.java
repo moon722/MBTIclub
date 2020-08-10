@@ -70,7 +70,7 @@ public class frag1_comment extends AppCompatActivity {
                 String user_name = PreferenceManager.getString(context, "user_name");
                 String user_comment = msgtext.getText().toString();
                 String title = intent.getStringExtra("value");
-                Toast.makeText(getApplicationContext(),user_name+""+user_comment+""+title, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),user_name+""+user_comment+""+title, Toast.LENGTH_SHORT).show();
 
                 Response.Listener<String> resStringListener = new Response.Listener<String>() {
                     @Override
